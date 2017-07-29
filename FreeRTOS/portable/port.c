@@ -515,7 +515,6 @@ __asm void xPortPendSVHandler( void )
 	bx r14
 }
 /*-----------------------------------------------------------*/
-
 void xPortSysTickHandler( void )
 {
 	/* The SysTick runs at the lowest interrupt priority, so when this interrupt

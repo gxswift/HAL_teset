@@ -41,7 +41,10 @@
 #include "stm32f4xx_hal.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "croutine.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -61,7 +64,15 @@ SDRAM_HandleTypeDef hsdram1;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
+static void vTaskTaskUserIF(void *pvParameters);
+static void vTaskLed(void *pvParameters);
+static void vTaskMsgPro(void *pvParameters);
+static void AppTaskCreate(void);
 
+
+static TaskHandle_t xHandleTaskUserIF = NULL;
+static TaskHandle_t xHandleTaskLed = NULL;
+static TaskHandle_t xHandleTaskMsgPro = NULL;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -145,13 +156,75 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 	}
 }
 //-----------------------------------------------------
+void HAL_Delay(__IO uint32_t Delay)
+{
+	vTaskDelay(Delay);
+}
+static void vTaskTaskUserIF(void *pvParameters)
+{
+			uint8_t temp;
+	while(1)
+	{
+
+		if (RX.Lenth)//有接收到数据，开启发送中断
+		{
+			temp = Read_Data(&RX);
+			HAL_UART_Transmit_IT(&huart1,&temp,1);
+		//	while(HAL_OK != HAL_UART_Transmit_IT(&huart1,&temp,1));
+		}
+				vTaskDelay(100);
+		/* USER CODE BEGIN 3 */
+	}
+}
+
+static void vTaskLed(void *pvParameters)
+{
+	while(1)
+	{
+		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);;
+		vTaskDelay(2000);
+	}
+}
+
+static void vTaskMsgPro(void *pvParameters)
+{
+	while(1)
+	{
+		HAL_GPIO_TogglePin(GPIOG,GPIO_PIN_7);
+		vTaskDelay(900);
+	}
+}
+static void AppTaskCreate (void)
+{
+	xTaskCreate(vTaskTaskUserIF,
+							"vTaskTaskUserIF",
+							512,
+							NULL,
+							1,
+							&xHandleTaskUserIF);
+	
+	xTaskCreate(vTaskLed,
+							"vTaskLed",
+							512,
+							NULL,
+							2,
+							&xHandleTaskLed);
+	
+	xTaskCreate(vTaskMsgPro,
+							"vTaskMsgPro",
+							512,
+							NULL,
+							3,
+							&xHandleTaskMsgPro);
+							
+}
 /* USER CODE END 0 */
 
 int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-		uint8_t temp;
+	__set_PRIMASK(1);
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -190,24 +263,20 @@ int main(void)
 	HAL_UART_Transmit_IT(&huart1, Tx, sizeof(Tx));
 
 	HAL_UART_Receive_IT(&huart1, Rx, 1);
+	
+	
+	AppTaskCreate();
+	
+	vTaskStartScheduler();
+	
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
   /* USER CODE END WHILE */
 
-	if (RX.Lenth)//有接收到数据，开启发送中断
-	{
-		temp = Read_Data(&RX);
-		HAL_UART_Transmit_IT(&huart1,&temp,1);
-	//	while(HAL_OK != HAL_UART_Transmit_IT(&huart1,&temp,1));
-	}
-	delay(3000000);
-  /* USER CODE BEGIN 3 */
-
-  }
   /* USER CODE END 3 */
-
+	}
 }
 
 /** System Clock Configuration

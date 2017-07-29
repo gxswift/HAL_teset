@@ -40,3 +40,16 @@
 .\objects\main.o: ..\Lib\Inc\stm32f4xx_hal_pcd.h
 .\objects\main.o: ..\Lib\Inc\stm32f4xx_ll_usb.h
 .\objects\main.o: ..\Lib\Inc\stm32f4xx_hal_pcd_ex.h
+.\objects\main.o: ..\FreeRTOS\include\FreeRTOS.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\main.o: ..\User\Inc\FreeRTOSConfig.h
+.\objects\main.o: ..\FreeRTOS\include\projdefs.h
+.\objects\main.o: ..\FreeRTOS\include\portable.h
+.\objects\main.o: ..\FreeRTOS\include\deprecated_definitions.h
+.\objects\main.o: ..\FreeRTOS\portable\portmacro.h
+.\objects\main.o: ..\FreeRTOS\include\mpu_wrappers.h
+.\objects\main.o: ..\FreeRTOS\include\task.h
+.\objects\main.o: ..\FreeRTOS\include\list.h
+.\objects\main.o: ..\FreeRTOS\include\queue.h
+.\objects\main.o: ..\FreeRTOS\include\croutine.h
+.\objects\main.o: ..\FreeRTOS\include\list.h
