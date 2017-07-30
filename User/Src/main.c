@@ -162,7 +162,7 @@ void HAL_Delay(__IO uint32_t Delay)
 }
 static void vTaskTaskUserIF(void *pvParameters)
 {
-			uint8_t temp;
+	uint8_t temp;
 	while(1)
 	{
 

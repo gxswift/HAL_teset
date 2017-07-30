@@ -1,0 +1,13 @@
+.\objects\sys_arch.o: ..\lwip\system\OS\sys_arch.c
+.\objects\sys_arch.o: ..\lwip\src\include\lwip/debug.h
+.\objects\sys_arch.o: ..\lwip\src\include\lwip/arch.h
+.\objects\sys_arch.o: ..\lwip\system\arch/cc.h
+.\objects\sys_arch.o: ..\lwip\system\arch/cpu.h
+.\objects\sys_arch.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\sys_arch.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\sys_arch.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\sys_arch.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\sys_arch.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\sys_arch.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\objects\sys_arch.o: ..\lwip\src\include\lwip/opt.h
+.\objects\sys_arch.o: ..\lwip\system\arch\lwipopts.h

@@ -91,6 +91,8 @@
 
 #define configUSE_PREEMPTION			1
 
+
+
 #define configCPU_CLOCK_HZ				160000000//( SystemCoreClock )
 #define configTICK_RATE_HZ				( ( TickType_t ) 1000 )
 #define configMAX_PRIORITIES			( 5 )
@@ -104,6 +106,8 @@
 #define configQUEUE_REGISTRY_SIZE		8
 
 #define configUSE_RECURSIVE_MUTEXES		1
+#define configUSE_MUTEXES					1//ÃÌº”∫Í∂®“Â
+#define configUSE_COUNTING_SEMAPHONRES 1
 
 #define configUSE_APPLICATION_TASK_TAG	0
 #define configUSE_COUNTING_SEMAPHORES	1
