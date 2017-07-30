@@ -1,3 +1,14 @@
 .\objects\igmp.o: ..\lwip\src\core\ipv4\igmp.c
 .\objects\igmp.o: ..\lwip\src\include\lwip/opt.h
 .\objects\igmp.o: ..\lwip\system\arch\lwipopts.h
+.\objects\igmp.o: ..\lwip\src\include\lwip/debug.h
+.\objects\igmp.o: ..\lwip\src\include\lwip/arch.h
+.\objects\igmp.o: ..\lwip\system\arch/cc.h
+.\objects\igmp.o: ..\lwip\system\arch/cpu.h
+.\objects\igmp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\igmp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\igmp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\igmp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\igmp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\igmp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\objects\igmp.o: ..\lwip\src\include\lwip/opt.h

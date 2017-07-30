@@ -27,152 +27,59 @@ Project File Date:  07/30/2017
 <h2>Output:</h2>
 Build target 'Template'
 compiling api_lib.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\api\api_lib.c: 0 warnings, 1 error
 compiling api_msg.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\api\api_msg.c: 0 warnings, 1 error
 compiling err.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\api\err.c: 0 warnings, 1 error
 compiling netbuf.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\api\netbuf.c: 0 warnings, 1 error
 compiling netdb.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\api\netdb.c: 0 warnings, 1 error
 compiling netifapi.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\api\netifapi.c: 0 warnings, 1 error
 compiling sockets.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\api\sockets.c: 0 warnings, 1 error
 compiling tcpip.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\api\tcpip.c: 0 warnings, 1 error
 compiling def.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\def.c: 0 warnings, 1 error
 compiling dns.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\dns.c: 0 warnings, 1 error
+..\lwip\src\core\dns.c(858): warning:  #223-D: function "LWIP_RAND" declared implicitly
+      u16_t port = (u16_t)DNS_RAND_TXID();
+..\lwip\src\core\dns.c(987): warning:  #223-D: function "LWIP_RAND" declared implicitly
+    txid = (u16_t)DNS_RAND_TXID();
+..\lwip\src\core\dns.c: 2 warnings, 0 errors
 compiling inet_chksum.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\inet_chksum.c: 0 warnings, 1 error
 compiling init.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\init.c: 0 warnings, 1 error
 compiling ip.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\ip.c: 0 warnings, 1 error
 compiling mem.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\mem.c: 0 warnings, 1 error
 compiling memp.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\memp.c: 0 warnings, 1 error
 compiling netif.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\netif.c: 0 warnings, 1 error
 compiling pbuf.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\pbuf.c: 0 warnings, 1 error
 compiling raw.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\raw.c: 0 warnings, 1 error
 compiling stats.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\stats.c: 0 warnings, 1 error
 compiling sys.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\sys.c: 0 warnings, 1 error
 compiling tcp.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\tcp.c: 0 warnings, 1 error
+..\lwip\src\core\tcp.c(361): warning:  #111-D: statement is unreachable
+      break;
+..\lwip\src\core\tcp.c: 1 warning, 0 errors
 compiling tcp_in.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\tcp_in.c: 0 warnings, 1 error
 compiling tcp_out.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\tcp_out.c: 0 warnings, 1 error
 compiling timeouts.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\timeouts.c: 0 warnings, 1 error
 compiling udp.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\udp.c: 0 warnings, 1 error
 compiling autoip.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\ipv4\autoip.c: 0 warnings, 1 error
 compiling dhcp.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\ipv4\dhcp.c: 0 warnings, 1 error
 compiling etharp.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\ipv4\etharp.c: 0 warnings, 1 error
 compiling icmp.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\ipv4\icmp.c: 0 warnings, 1 error
 compiling igmp.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\ipv4\igmp.c: 0 warnings, 1 error
 compiling ip4.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\ipv4\ip4.c: 0 warnings, 1 error
 compiling ip4_addr.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\ipv4\ip4_addr.c: 0 warnings, 1 error
 compiling ip4_frag.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\src\core\ipv4\ip4_frag.c: 0 warnings, 1 error
 compiling sys_arch.c...
-..\lwip\src\include\lwip/arch.h(123): error:  #256: invalid redeclaration of type name "u32_t" (declared at line 41 of "..\lwip\system\arch/cc.h")
-  typedef uint32_t  u32_t;
-..\lwip\src\include\lwip/arch.h(124): error:  #256: invalid redeclaration of type name "s32_t" (declared at line 42 of "..\lwip\system\arch/cc.h")
-  typedef int32_t   s32_t;
-..\lwip\src\include\lwip/arch.h(125): error:  #256: invalid redeclaration of type name "mem_ptr_t" (declared at line 43 of "..\lwip\system\arch/cc.h")
-  typedef uintptr_t mem_ptr_t;
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\system\OS\sys_arch.c: 0 warnings, 4 errors
+..\lwip\system\OS\sys_arch.c(399): warning:  #167-D: argument of type "signed char *" is incompatible with parameter of type "const char *const"
+        result = xTaskCreate( thread, ( signed portCHAR * ) name, stacksize, arg, prio, &CreatedTask );
+..\lwip\system\OS\sys_arch.c: 1 warning, 0 errors
 compiling ethernetif.c...
-..\lwip\system\arch\lwipopts.h(47): error:  #13: expected a file name
-  #include LWIP_COMPAT_MUTEX                                                    1
-..\lwip\system\OS\ethernetif.c: 0 warnings, 1 error
-".\Objects\Template.axf" - 38 Error(s), 0 Warning(s).
+linking...
+.\Objects\Template.axf: Error: L6200E: Symbol heth multiply defined (by ethernetif.o and main.o).
+.\Objects\Template.axf: Error: L6200E: Symbol HAL_ETH_MspDeInit multiply defined (by ethernetif.o and stm32f4xx_hal_msp.o).
+.\Objects\Template.axf: Error: L6200E: Symbol HAL_ETH_MspInit multiply defined (by ethernetif.o and stm32f4xx_hal_msp.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 3 error messages.
+".\Objects\Template.axf" - 3 Error(s), 4 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\practise\F429Test\Hal_test\Obj\RTE
