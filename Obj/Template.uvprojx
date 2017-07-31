@@ -362,7 +362,7 @@
             <uC99>0</uC99>
             <useXO>0</useXO>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F429xx</Define>
               <Undefine></Undefine>
               <IncludePath>..\Core;..\Lib\Inc;..\User\Inc;..\User;..\FreeRTOS\include;..\FreeRTOS\portable;..\lwip\src\include;..\lwip\system\OS;..\lwip\system;..\lwip\system\arch</IncludePath>
@@ -432,6 +432,11 @@
               <FileName>FreeRTOSConfig.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\User\Inc\FreeRTOSConfig.h</FilePath>
+            </File>
+            <File>
+              <FileName>lwip.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\Src\lwip.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1087,6 +1092,71 @@
               <FileName>ip4_frag.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\lwip\src\core\ipv4\ip4_frag.c</FilePath>
+            </File>
+            <File>
+              <FileName>ethernet.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\netif\ethernet.c</FilePath>
+            </File>
+            <File>
+              <FileName>ethernetif.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\netif\ethernetif.c</FilePath>
+            </File>
+            <File>
+              <FileName>lowpan6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\netif\lowpan6.c</FilePath>
+            </File>
+            <File>
+              <FileName>slipif.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\netif\slipif.c</FilePath>
+            </File>
+            <File>
+              <FileName>dhcp6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\core\ipv6\dhcp6.c</FilePath>
+            </File>
+            <File>
+              <FileName>ethip6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\core\ipv6\ethip6.c</FilePath>
+            </File>
+            <File>
+              <FileName>icmp6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\core\ipv6\icmp6.c</FilePath>
+            </File>
+            <File>
+              <FileName>inet6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\core\ipv6\inet6.c</FilePath>
+            </File>
+            <File>
+              <FileName>ip6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\core\ipv6\ip6.c</FilePath>
+            </File>
+            <File>
+              <FileName>ip6_addr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\core\ipv6\ip6_addr.c</FilePath>
+            </File>
+            <File>
+              <FileName>ip6_frag.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\core\ipv6\ip6_frag.c</FilePath>
+            </File>
+            <File>
+              <FileName>mld6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\core\ipv6\mld6.c</FilePath>
+            </File>
+            <File>
+              <FileName>nd6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\core\ipv6\nd6.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -44,6 +44,13 @@
 #define LWIP_NETCONN                    1
 #define LWIP_SOCKET                     0
 
+/*----- WITH_RTOS enabled (Since FREERTOS is set) -----*/
+#define WITH_RTOS 1
+/*----- CHECKSUM_BY_HARDWARE disabled -----*/
+#define CHECKSUM_BY_HARDWARE 0
+
+#define LWIP_ETHERNET 1
+#define LWIP_DNS_SECURE 7
 #define LWIP_COMPAT_MUTEX							1
 #define LWIP_COMPAT_MUTEX_ALLOWED
 #define LWIP_PROVIDE_ERRNO
@@ -63,6 +70,11 @@
 #define TCP_WND                     (4 * TCP_MSS)
 #define TCP_SND_BUF                 (8 * TCP_MSS)
 
+#define TCP_SNDLOWAT 1071
+/*----- Value in opt.h for TCP_SNDQUEUELOWAT: LWIP_MAX(TCP_SND_QUEUELEN)/2, 5) -*/
+#define TCP_SNDQUEUELOWAT 5
+/*----- Value in opt.h for TCP_WND_UPDATE_THRESHOLD: LWIP_MIN(TCP_WND/4, TCP_MSS*4) -----*/
+#define TCP_WND_UPDATE_THRESHOLD 536
 //#define CHECKSUM_GEN_ICMP                    0
 /* Minimal changes to opt.h required for etharp unit tests: */
 #define ETHARP_SUPPORT_STATIC_ENTRIES   1

@@ -1,0 +1,14 @@
+.\objects\ip6.o: ..\lwip\src\core\ipv6\ip6.c
+.\objects\ip6.o: ..\lwip\src\include\lwip/opt.h
+.\objects\ip6.o: ..\lwip\system\arch\lwipopts.h
+.\objects\ip6.o: ..\lwip\src\include\lwip/debug.h
+.\objects\ip6.o: ..\lwip\src\include\lwip/arch.h
+.\objects\ip6.o: ..\lwip\system\arch/cc.h
+.\objects\ip6.o: ..\lwip\system\arch/cpu.h
+.\objects\ip6.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\ip6.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\ip6.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\ip6.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\ip6.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\ip6.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\objects\ip6.o: ..\lwip\src\include\lwip/opt.h

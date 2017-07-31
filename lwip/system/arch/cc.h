@@ -90,4 +90,5 @@ typedef int sys_prot_t;
 
 #define LWIP_PLATFORM_ASSERT(x) //do { if(!(x)) while(1); } while(0)
 
+#define LWIP_RAND() ((u32_t)rand())
 #endif /* __CC_H__ */

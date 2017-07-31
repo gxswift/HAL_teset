@@ -48,7 +48,7 @@
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
-ETH_HandleTypeDef heth;
+//extern ETH_HandleTypeDef heth;
 
 LTDC_HandleTypeDef hltdc;
 
@@ -83,7 +83,6 @@ static void MX_LTDC_Init(void);
 static void MX_SDIO_SD_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_USB_OTG_HS_PCD_Init(void);
-static void MX_ETH_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_NVIC_Init(void);
 
@@ -250,9 +249,9 @@ int main(void)
   MX_SDIO_SD_Init();
   MX_SPI1_Init();
   MX_USB_OTG_HS_PCD_Init();
-  MX_ETH_Init();
+//  MX_ETH_Init();
   MX_USART1_UART_Init();
-
+//	MX_LWIP_Init();
   /* Initialize interrupts */
   MX_NVIC_Init();
 
@@ -360,36 +359,6 @@ static void MX_NVIC_Init(void)
   HAL_NVIC_EnableIRQ(USART1_IRQn);
 }
 
-/* ETH init function */
-static void MX_ETH_Init(void)
-{
-
-   uint8_t MACAddr[6] ;
-
-  heth.Instance = ETH;
-  heth.Init.AutoNegotiation = ETH_AUTONEGOTIATION_ENABLE;
-  heth.Init.PhyAddress = LAN8742A_PHY_ADDRESS;
-  MACAddr[0] = 0x00;
-  MACAddr[1] = 0x80;
-  MACAddr[2] = 0xE1;
-  MACAddr[3] = 0x00;
-  MACAddr[4] = 0x00;
-  MACAddr[5] = 0x00;
-  heth.Init.MACAddr = &MACAddr[0];
-  heth.Init.RxMode = ETH_RXPOLLING_MODE;
-  heth.Init.ChecksumMode = ETH_CHECKSUM_BY_HARDWARE;
-  heth.Init.MediaInterface = ETH_MEDIA_INTERFACE_RMII;
-
-  /* USER CODE BEGIN MACADDRESS */
-    
-  /* USER CODE END MACADDRESS */
-
-  if (HAL_ETH_Init(&heth) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
-
-}
 
 /* LTDC init function */
 static void MX_LTDC_Init(void)
