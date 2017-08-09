@@ -40,3 +40,11 @@
 .\objects\stm32f4xx_it.o: ..\Lib\Inc\stm32f4xx_ll_usb.h
 .\objects\stm32f4xx_it.o: ..\Lib\Inc\stm32f4xx_hal_pcd_ex.h
 .\objects\stm32f4xx_it.o: ..\User\Inc\stm32f4xx_it.h
+.\objects\stm32f4xx_it.o: ..\FreeRTOS\include\FreeRTOS.h
+.\objects\stm32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\stm32f4xx_it.o: ..\User\Inc\FreeRTOSConfig.h
+.\objects\stm32f4xx_it.o: ..\FreeRTOS\include\projdefs.h
+.\objects\stm32f4xx_it.o: ..\FreeRTOS\include\portable.h
+.\objects\stm32f4xx_it.o: ..\FreeRTOS\include\deprecated_definitions.h
+.\objects\stm32f4xx_it.o: ..\FreeRTOS\portable\portmacro.h
+.\objects\stm32f4xx_it.o: ..\FreeRTOS\include\mpu_wrappers.h
