@@ -184,8 +184,11 @@ static void vTaskLed(void *pvParameters)
 {
 	while(1)
 	{
-		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);;
-		vTaskDelay(2000);
+		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);
+		HAL_GPIO_TogglePin(GPIOG,GPIO_PIN_7);
+		vTaskDelay(500);
+		HAL_GPIO_TogglePin(GPIOG,GPIO_PIN_7);
+		vTaskDelay(500);
 	}
 }
 
@@ -193,8 +196,7 @@ static void vTaskMsgPro(void *pvParameters)
 {
 	while(1)
 	{
-		HAL_GPIO_TogglePin(GPIOG,GPIO_PIN_7);
-		vTaskDelay(900);
+
 	}
 }
 static void AppTaskCreate (void)
