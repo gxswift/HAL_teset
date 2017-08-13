@@ -47,6 +47,7 @@
 #include "croutine.h"
 
 #include "lwip.h"
+#include "httpserver-netconn.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -158,6 +159,13 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 	//	while(HAL_OK != HAL_UART_Transmit_IT(huart,&temp,1));
 	}
 }
+void Send(uint8_t *data)
+{
+	while(*data)
+	{
+		Write_Data(&RX,*data++);
+	}
+}
 //-----------------------------------------------------
 void HAL_Delay(__IO uint32_t Delay)
 {
@@ -196,7 +204,7 @@ static void vTaskMsgPro(void *pvParameters)
 {
 	while(1)
 	{
-
+		vTaskDelay(300);
 	}
 }
 static void AppTaskCreate (void)
@@ -257,6 +265,10 @@ int main(void)
   MX_USB_OTG_HS_PCD_Init();
   MX_ETH_Init();
   MX_USART1_UART_Init();
+	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_3,1);
+	delay(1000000);
+	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_3,0);
+	delay(1000000);
 	MX_LWIP_Init();
   /* Initialize interrupts */
   MX_NVIC_Init();
@@ -265,13 +277,13 @@ int main(void)
 
   /* USER CODE END 2 */
 	memcpy(Tx,"USART TEST\r\n",18);
-	HAL_UART_Transmit_IT(&huart1, Tx, sizeof(Tx));
-
+//	HAL_UART_Transmit_IT(&huart1, Tx, sizeof(Tx));
+	Send(Tx);
 	HAL_UART_Receive_IT(&huart1, Rx, 1);
 	
 	
 	AppTaskCreate();
-	
+	http_server_netconn_init();
 	vTaskStartScheduler();
 	
   /* Infinite loop */

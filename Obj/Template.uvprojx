@@ -365,7 +365,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F429xx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Core;..\Lib\Inc;..\User\Inc;..\User;..\FreeRTOS\include;..\FreeRTOS\portable;..\lwip\src\include;..\lwip\system\OS;..\lwip\system;..\lwip\system\arch</IncludePath>
+              <IncludePath>..\Core;..\Lib\Inc;..\User\Inc;..\User;..\FreeRTOS\include;..\FreeRTOS\portable;..\lwip\src\include;..\lwip\system\OS;..\lwip\system;..\lwip\system\arch;..\NetDemo</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1177,6 +1177,16 @@
               <FileName>ethernetif.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\lwip\system\OS\ethernetif.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>NetDemo</GroupName>
+          <Files>
+            <File>
+              <FileName>httpserver-netconn.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\NetDemo\httpserver-netconn.c</FilePath>
             </File>
           </Files>
         </Group>

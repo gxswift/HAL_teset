@@ -56,7 +56,9 @@
 #endif /* MDK ARM Compiler */
 
 /* USER CODE BEGIN 0 */
-
+#include "stm32f4xx_hal.h"
+extern UART_HandleTypeDef huart1;
+extern void Send(uint8_t *data);
 /* USER CODE END 0 */
 /* Private function prototypes -----------------------------------------------*/
 /* ETH Variables initialization ----------------------------------------------*/
@@ -81,33 +83,47 @@ ip4_addr_t gw;
   */
 void MX_LWIP_Init(void)
 {
+	struct netif *Netif_Init_Flag;	
   /* Initilialize the LwIP stack with RTOS */
   tcpip_init( NULL, NULL );
-
+#if LWIP_DHCP
   /* IP addresses initialization with DHCP (IPv4) */
   ipaddr.addr = 0;
   netmask.addr = 0;
   gw.addr = 0;
-
+#else
+	IP4_ADDR(&ipaddr,192,168,1,115);
+	IP4_ADDR(&netmask,255,255,255,0);
+	IP4_ADDR(&gw,192,168,1,1);
+#endif
   /* add the network interface (IPv4/IPv6) with RTOS */
-  netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &tcpip_input);
-	
+  Netif_Init_Flag = netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &tcpip_input);
+	if(Netif_Init_Flag==NULL)
+		
+		Send("添加失败\r\n");
+	else
+	Send("添加成功\r\n");
+	//HAL_UART_Transmit(&huart1, "添加成功\r\n", 11,200);
   /* Registers the default network interface */
   netif_set_default(&gnetif);
 
   if (netif_is_link_up(&gnetif))
   {
+				Send("设置成功\r\n");
     /* When the netif is fully configured this function must be called */
     netif_set_up(&gnetif);
   }
   else
   {
+		Send("设置失败\r\n");
     /* When the netif link is down this function must be called */
     netif_set_down(&gnetif);
   }
 
   /* Start DHCP negotiation for a network interface (IPv4) */
+#if LWIP_DHCP	
   dhcp_start(&gnetif);
+#endif
 
 /* USER CODE BEGIN 3 */
 
