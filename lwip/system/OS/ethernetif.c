@@ -102,6 +102,7 @@ __ALIGN_BEGIN uint8_t Tx_Buff[ETH_TXBUFNB][ETH_TX_BUF_SIZE] __ALIGN_END; /* Ethe
 
 /* Semaphore to signal incoming packets */
 SemaphoreHandle_t s_xSemaphore = NULL;
+static TaskHandle_t xHandleTaskETH = NULL;
 /* Global Ethernet handle */
 extern ETH_HandleTypeDef heth;
 
@@ -169,7 +170,7 @@ void HAL_ETH_MspInit(ETH_HandleTypeDef* ethHandle)
 		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 		HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
     /* Peripheral interrupt init */
-    HAL_NVIC_SetPriority(ETH_IRQn, 1, 0);
+    HAL_NVIC_SetPriority(ETH_IRQn, 3, 0);
     HAL_NVIC_EnableIRQ(ETH_IRQn);
   /* USER CODE BEGIN ETH_MspInit 1 */
 
@@ -310,7 +311,7 @@ static void low_level_init(struct netif *netif)
 ///* create the task that handles the ETH_MAC */
 ////  osThreadDef(EthIf, ethernetif_input, osPriorityRealtime, 0, INTERFACE_THREAD_STACK_SIZE);
 ////  osThreadCreate (osThread(EthIf), netif);
-//	xTaskCreate(ethernetif_input,"EthIf",INTERFACE_THREAD_STACK_SIZE,netif,2,&handle);
+	xTaskCreate(ethernetif_input,"EthIf",INTERFACE_THREAD_STACK_SIZE,netif,2,&xHandleTaskETH);
   /* Enable MAC and DMA transmission and reception */
   HAL_ETH_Start(&heth);
 
@@ -534,8 +535,8 @@ void ethernetif_input( void const * argument )
   struct pbuf *p;
   struct netif *netif = (struct netif *) argument;
 //  portBASE_TYPE taskWoken = pdFALSE; 
-//  for( ;; )
-//  {
+  for( ;; )
+  {
 //    if (osSemaphoreWait( s_xSemaphore, TIME_WAITING_FOR_INPUT)==osOK)
 //    {
       do
@@ -549,8 +550,9 @@ void ethernetif_input( void const * argument )
           }
         }
       } while(p!=NULL);
+			vTaskDelay(2);
 //    }
-//  }
+  }
 }
 
 #if !LWIP_ARP

@@ -187,9 +187,11 @@ static void vTaskTaskUserIF(void *pvParameters)
 		/* USER CODE BEGIN 3 */
 	}
 }
-
+uint32_t reg[32];
+char ch[30];
 static void vTaskLed(void *pvParameters)
 {
+	uint8_t t=0;
 	while(1)
 	{
 		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);
@@ -197,6 +199,19 @@ static void vTaskLed(void *pvParameters)
 		vTaskDelay(500);
 		HAL_GPIO_TogglePin(GPIOG,GPIO_PIN_7);
 		vTaskDelay(500);
+//		if(t<20)
+//		{
+//			t++;
+//			if(t == 10)
+//				{
+//				for(uint8_t i=0;i<32;i++){
+//			HAL_ETH_ReadPHYRegister(&heth, i, &reg[i]);
+//				sprintf(ch,"¼Ä´æÆ÷%d:%#8x\r\n",i,reg[i]);
+//				HAL_UART_Transmit(&huart1,(uint8_t*)ch,20,200);
+//				delay(1000000);
+//				}
+//			}
+//		}
 	}
 }
 
@@ -265,9 +280,9 @@ int main(void)
   MX_USB_OTG_HS_PCD_Init();
   MX_ETH_Init();
   MX_USART1_UART_Init();
-	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_3,1);
-	delay(1000000);
 	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_3,0);
+	delay(1000000);
+	HAL_GPIO_WritePin(GPIOE,GPIO_PIN_3,1);
 	delay(1000000);
 	MX_LWIP_Init();
   /* Initialize interrupts */
@@ -281,9 +296,14 @@ int main(void)
 	Send(Tx);
 	HAL_UART_Receive_IT(&huart1, Rx, 1);
 	
-	
+	for(uint8_t i=0;i<32;i++){
+	HAL_ETH_ReadPHYRegister(&heth, i, &reg[i]);
+		sprintf(ch,"¼Ä´æÆ÷%d:%#8x\r\n",i,reg[i]);
+		HAL_UART_Transmit(&huart1,(uint8_t*)ch,20,200);
+		delay(1000000);
+	}
 	AppTaskCreate();
-	http_server_netconn_init();
+
 	vTaskStartScheduler();
 	
   /* Infinite loop */
