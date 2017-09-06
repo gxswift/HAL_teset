@@ -102,7 +102,6 @@ __ALIGN_BEGIN uint8_t Tx_Buff[ETH_TXBUFNB][ETH_TX_BUF_SIZE] __ALIGN_END; /* Ethe
 
 /* Semaphore to signal incoming packets */
 SemaphoreHandle_t s_xSemaphore = NULL;
-static TaskHandle_t xHandleTaskETH = NULL;
 /* Global Ethernet handle */
 extern ETH_HandleTypeDef heth;
 
@@ -311,7 +310,7 @@ static void low_level_init(struct netif *netif)
 ///* create the task that handles the ETH_MAC */
 ////  osThreadDef(EthIf, ethernetif_input, osPriorityRealtime, 0, INTERFACE_THREAD_STACK_SIZE);
 ////  osThreadCreate (osThread(EthIf), netif);
-	xTaskCreate(ethernetif_input,"EthIf",INTERFACE_THREAD_STACK_SIZE,netif,2,&xHandleTaskETH);
+	xTaskCreate(ethernetif_input,"EthIf",INTERFACE_THREAD_STACK_SIZE,netif,2,NULL);
   /* Enable MAC and DMA transmission and reception */
   HAL_ETH_Start(&heth);
 
@@ -530,6 +529,7 @@ static struct pbuf * low_level_input(struct netif *netif)
  *
  * @param netif the lwip network interface structure for this ethernetif
  */
+#define emacBLOCK_TIME_WAITING_FOR_INPUT	( ( portTickType ) 100 )
 void ethernetif_input( void const * argument ) 
 {
   struct pbuf *p;
@@ -538,7 +538,8 @@ void ethernetif_input( void const * argument )
   for( ;; )
   {
 //    if (osSemaphoreWait( s_xSemaphore, TIME_WAITING_FOR_INPUT)==osOK)
-//    {
+		if (xSemaphoreTake( s_xSemaphore, emacBLOCK_TIME_WAITING_FOR_INPUT)==pdTRUE)
+    {
       do
       {   
         p = low_level_input( netif );
@@ -550,8 +551,7 @@ void ethernetif_input( void const * argument )
           }
         }
       } while(p!=NULL);
-			vTaskDelay(2);
-//    }
+    }
   }
 }
 
