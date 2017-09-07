@@ -111,7 +111,7 @@ extern ETH_HandleTypeDef heth;
 /* USER CODE END 3 */
 
 /* Private functions ---------------------------------------------------------*/
-
+static void ethernetif_input( void const * argument );
 void HAL_ETH_MspInit(ETH_HandleTypeDef* ethHandle)
 {
   GPIO_InitTypeDef GPIO_InitStruct;
@@ -641,7 +641,7 @@ err_t ethernetif_init(struct netif *netif)
 #if LWIP_IPV6
   netif->output_ip6 = ethip6_output;
 #endif /* LWIP_IPV6 */
-
+	netif->output = etharp_output;
   netif->linkoutput = low_level_output;
 
   /* initialize the hardware */

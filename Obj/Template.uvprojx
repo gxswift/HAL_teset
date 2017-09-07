@@ -1099,11 +1099,6 @@
               <FilePath>..\lwip\src\netif\ethernet.c</FilePath>
             </File>
             <File>
-              <FileName>ethernetif.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lwip\src\netif\ethernetif.c</FilePath>
-            </File>
-            <File>
               <FileName>lowpan6.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\lwip\src\netif\lowpan6.c</FilePath>

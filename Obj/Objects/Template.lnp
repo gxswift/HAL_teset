@@ -132,7 +132,6 @@
 ".\objects\ip4_addr.o"
 ".\objects\ip4_frag.o"
 ".\objects\ethernet.o"
-".\objects\ethernetif.o"
 ".\objects\lowpan6.o"
 ".\objects\slipif.o"
 ".\objects\dhcp6.o"

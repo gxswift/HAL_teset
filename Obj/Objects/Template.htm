@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Template.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Template.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Wed Sep 06 23:32:09 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Sep 07 14:20:33 2017
 <BR><P>
 <H3>Maximum Stack Usage =        752 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1748,22 +1748,13 @@ Global Symbols
 <LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;etharp_output_to_arp_index
 </UL>
 
-<P><STRONG><a name="[6f]"></a>ethernetif_init</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, ethernetif_1.o(i.ethernetif_init))
+<P><STRONG><a name="[6f]"></a>ethernetif_init</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, ethernetif_1.o(i.ethernetif_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 336 + Unknown Stack Size
 <LI>Call Chain = ethernetif_init &rArr; low_level_init &rArr; HAL_ETH_Init &rArr; ETH_MACDMAConfig &rArr; HAL_Delay &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;low_level_init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> lwip.o(i.MX_LWIP_Init)
-</UL>
-<P><STRONG><a name="[74]"></a>ethernetif_input</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, ethernetif_1.o(i.ethernetif_input))
-<BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = ethernetif_input &rArr; low_level_input &rArr; pbuf_alloc &rArr; pbuf_free &rArr; mem_free &rArr; sys_arch_sem_wait &rArr; xQueueGenericReceive &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
-</UL>
-<BR>[Calls]<UL><LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pbuf_free
-<LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReceive
-<LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;low_level_input
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> ethernetif_1.o(i.low_level_init)
 </UL>
 <P><STRONG><a name="[15d]"></a>icmp_dest_unreach</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, icmp.o(i.icmp_dest_unreach))
 <BR><BR>[Stack]<UL><LI>Max Depth = 480<LI>Call Chain = icmp_dest_unreach &rArr; icmp_send_response &rArr; ip4_output_if &rArr; ip4_output_if_src &rArr; ip4_frag &rArr; pbuf_alloc &rArr; pbuf_free &rArr; mem_free &rArr; sys_arch_sem_wait &rArr; xQueueGenericReceive &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
@@ -4610,6 +4601,15 @@ Local Symbols
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ip_frag_free_pbuf_custom_ref
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> ip4_frag.o(i.ip4_frag)
+</UL>
+<P><STRONG><a name="[74]"></a>ethernetif_input</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, ethernetif_1.o(i.ethernetif_input))
+<BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = ethernetif_input &rArr; low_level_input &rArr; pbuf_alloc &rArr; pbuf_free &rArr; mem_free &rArr; sys_arch_sem_wait &rArr; xQueueGenericReceive &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
+</UL>
+<BR>[Calls]<UL><LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pbuf_free
+<LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericReceive
+<LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;low_level_input
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> ethernetif_1.o(i.low_level_init)
 </UL>
 <P><STRONG><a name="[15a]"></a>low_level_init</STRONG> (Thumb, 294 bytes, Stack size 32 bytes, ethernetif_1.o(i.low_level_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 328 + Unknown Stack Size

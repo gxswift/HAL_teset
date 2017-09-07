@@ -7,6 +7,5 @@
 /* Exported types ------------------------------------------------------------*/
 err_t ethernetif_init(struct netif *netif);      
 void ETHERNET_IRQHandler(void);
-void ethernetif_input( void const * argument );
 //void ethernetif_input( void * pvParameters );
 #endif 
