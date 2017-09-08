@@ -22,17 +22,21 @@ Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
 E:\Project\Practise\HAL_test\Obj\Template.uvprojx
-Project File Date:  09/07/2017
+Project File Date:  09/08/2017
 
 <h2>Output:</h2>
 Build target 'Template'
-compiling ethernetif.c...
-..\lwip\system\OS\ethernetif.c(320): warning:  #167-D: argument of type "void (*)(const void *)" is incompatible with parameter of type "TaskFunction_t"
-        xTaskCreate(ethernetif_input,"EthIf",INTERFACE_THREAD_STACK_SIZE,netif,2,NULL);
-..\lwip\system\OS\ethernetif.c: 1 warning, 0 errors
+compiling main.c...
+..\User\Src\main.c(194): warning:  #177-D: variable "t" was declared but never referenced
+        uint8_t t=0;
+..\User\Src\main.c(270): warning:  #188-D: enumerated type mixed with another type
+        HAL_GPIO_WritePin(GPIOE,GPIO_PIN_3,0);
+..\User\Src\main.c(272): warning:  #188-D: enumerated type mixed with another type
+        HAL_GPIO_WritePin(GPIOE,GPIO_PIN_3,1);
+..\User\Src\main.c: 3 warnings, 0 errors
 linking...
 Program Size: Code=57206 RO-data=1058 RW-data=376 ZI-data=142680  
-".\Objects\Template.axf" - 0 Error(s), 1 Warning(s).
+".\Objects\Template.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   E:\Project\Practise\HAL_test\Obj\RTE

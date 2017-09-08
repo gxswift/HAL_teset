@@ -199,19 +199,6 @@ static void vTaskLed(void *pvParameters)
 		vTaskDelay(500);
 		HAL_GPIO_TogglePin(GPIOG,GPIO_PIN_7);
 		vTaskDelay(500);
-//		if(t<20)
-//		{
-//			t++;
-//			if(t == 10)
-//				{
-//				for(uint8_t i=0;i<32;i++){
-//			HAL_ETH_ReadPHYRegister(&heth, i, &reg[i]);
-//				sprintf(ch,"¼Ä´æÆ÷%d:%#8x\r\n",i,reg[i]);
-//				HAL_UART_Transmit(&huart1,(uint8_t*)ch,20,200);
-//				delay(1000000);
-//				}
-//			}
-//		}
 	}
 }
 

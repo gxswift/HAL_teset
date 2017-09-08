@@ -561,23 +561,7 @@ void ethernetif_input( void const * argument )
     }
   }
 }
-//void ethernetif_input( void * pvParameters )
-//{
-//  struct pbuf *p;
-//  
-//  for( ;; )
-//  {
-//    if (xSemaphoreTake( s_xSemaphore, emacBLOCK_TIME_WAITING_FOR_INPUT)==pdTRUE)
-//    {
-//      p = low_level_input( s_pxNetIf );
-//      if (ERR_OK != s_pxNetIf->input( p, s_pxNetIf))
-//      {
-//        pbuf_free(p);
-//        p=NULL;
-//      }
-//    }
-//  }
-//}  
+
 #if !LWIP_ARP
 /**
  * This function has to be completed by user in case of ARP OFF.
@@ -641,7 +625,6 @@ err_t ethernetif_init(struct netif *netif)
 #if LWIP_IPV6
   netif->output_ip6 = ethip6_output;
 #endif /* LWIP_IPV6 */
-	netif->output = etharp_output;
   netif->linkoutput = low_level_output;
 
   /* initialize the hardware */
@@ -687,6 +670,43 @@ u32_t sys_now(void)
 * @param  netif: The network interface
   * @retval None
   */
+/**
+  * @brief  This function sets the netif link status.
+  * @param  netif: the network interface
+  * @retval None
+  */
+void ethernetif_set_link(void const *argument)
+{
+  uint32_t regvalue = 0;
+  struct link_str *link_arg = (struct link_str *)argument;
+  
+  for(;;)
+  {
+    if (osSemaphoreWait( link_arg->semaphore, 100)== osOK)
+    {
+      /* Read PHY_MISR*/
+      HAL_ETH_ReadPHYRegister(&EthHandle, PHY_MISR, &regvalue);
+      
+      /* Check whether the link interrupt has occurred or not */
+      if((regvalue & PHY_LINK_INTERRUPT) != (uint16_t)RESET)
+      {
+        /* Read PHY_SR*/
+        HAL_ETH_ReadPHYRegister(&EthHandle, PHY_SR, &regvalue);
+        
+        /* Check whether the link is up or down*/
+        if((regvalue & PHY_LINK_STATUS)!= (uint16_t)RESET)
+        {
+          netif_set_link_up(link_arg->netif);
+        }
+        else
+        {
+          netif_set_link_down(link_arg->netif);
+        }
+      }
+    }
+  }
+}
+
 void ethernetif_update_config(struct netif *netif)
 {
   __IO uint32_t tickstart = 0;
