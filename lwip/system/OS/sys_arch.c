@@ -43,7 +43,7 @@
 xTaskHandle xTaskGetCurrentTaskHandle( void ) PRIVILEGED_FUNCTION;
 
 /* This is the number of threads that can be started with sys_thread_new() */
-#define SYS_THREAD_MAX 6
+#define SYS_THREAD_MAX 8
 
 static u16_t s_nextthread = 0;
 

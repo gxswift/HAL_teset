@@ -54,7 +54,7 @@
 #define LWIP_COMPAT_MUTEX							1
 #define LWIP_COMPAT_MUTEX_ALLOWED
 #define LWIP_PROVIDE_ERRNO
-#define LWIP_ARP		1
+#define LWIP_ARP	1
 
 #define LWIP_DHCP                       0 //使能DHCP模塊
 #define MEM_ALIGNMENT                   4  //必须4字节对齐 曾出现在memset的时候hardfault

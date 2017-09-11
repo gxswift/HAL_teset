@@ -170,7 +170,7 @@ void HAL_ETH_MspInit(ETH_HandleTypeDef* ethHandle)
 		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 		HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
     /* Peripheral interrupt init */
-    HAL_NVIC_SetPriority(ETH_IRQn, 3, 0);
+    HAL_NVIC_SetPriority(ETH_IRQn, 7, 0);
     HAL_NVIC_EnableIRQ(ETH_IRQn);
   /* USER CODE BEGIN ETH_MspInit 1 */
 
@@ -310,14 +310,14 @@ static void low_level_init(struct netif *netif)
 //	vSemaphoreCreateBinary(s_xSemaphore);
   if (s_xSemaphore == NULL)
   {
-    s_xSemaphore= xSemaphoreCreateCounting(20,0);
+    s_xSemaphore= xSemaphoreCreateCounting(40,0);
   }
 
 ///* create the task that handles the ETH_MAC */
 ////  osThreadDef(EthIf, ethernetif_input, osPriorityRealtime, 0, INTERFACE_THREAD_STACK_SIZE);
 ////  osThreadCreate (osThread(EthIf), netif);
 //	s_pxNetIf =netif;
-	xTaskCreate(ethernetif_input,"EthIf",INTERFACE_THREAD_STACK_SIZE,netif,2,NULL);
+	xTaskCreate(ethernetif_input,"EthIf",INTERFACE_THREAD_STACK_SIZE,netif,6,NULL);
   /* Enable MAC and DMA transmission and reception */
   HAL_ETH_Start(&heth);
 
@@ -561,7 +561,23 @@ void ethernetif_input( void const * argument )
     }
   }
 }
-
+//void ethernetif_input( void * pvParameters )
+//{
+//  struct pbuf *p;
+//  
+//  for( ;; )
+//  {
+//    if (xSemaphoreTake( s_xSemaphore, emacBLOCK_TIME_WAITING_FOR_INPUT)==pdTRUE)
+//    {
+//      p = low_level_input( s_pxNetIf );
+//      if (ERR_OK != s_pxNetIf->input( p, s_pxNetIf))
+//      {
+//        pbuf_free(p);
+//        p=NULL;
+//      }
+//    }
+//  }
+//}  
 #if !LWIP_ARP
 /**
  * This function has to be completed by user in case of ARP OFF.
@@ -706,7 +722,6 @@ void ethernetif_set_link(void const *argument)
     }
   }
 }
-
 void ethernetif_update_config(struct netif *netif)
 {
   __IO uint32_t tickstart = 0;
