@@ -224,12 +224,12 @@ static void vTaskMsgPro(void *pvParameters)
 }
 static void AppTaskCreate (void)
 {
-	xTaskCreate(vTaskTaskUserIF,
+/*	xTaskCreate(vTaskTaskUserIF,
 							"vTaskTaskUserIF",
 							512,
 							NULL,
 							1,
-							&xHandleTaskUserIF);
+							&xHandleTaskUserIF);*/
 	
 	xTaskCreate(vTaskLed,
 							"vTaskLed",
@@ -413,7 +413,7 @@ static void MX_ETH_Init(void)
   MACAddr[4] = 0x00;
   MACAddr[5] = 0x00;
   heth.Init.MACAddr = &MACAddr[0];
-  heth.Init.RxMode = ETH_RXPOLLING_MODE;
+  heth.Init.RxMode = ETH_RXINTERRUPT_MODE;
   heth.Init.ChecksumMode = ETH_CHECKSUM_BY_HARDWARE;
   heth.Init.MediaInterface = ETH_MEDIA_INTERFACE_RMII;
 

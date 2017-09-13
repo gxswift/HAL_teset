@@ -12,12 +12,3 @@
 .\objects\stats.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 .\objects\stats.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
 .\objects\stats.o: ..\lwip\src\include\lwip/opt.h
-.\objects\stats.o: ..\lwip\src\include\lwip/def.h
-.\objects\stats.o: ..\lwip\src\include\lwip/stats.h
-.\objects\stats.o: ..\lwip\src\include\lwip/mem.h
-.\objects\stats.o: ..\lwip\src\include\lwip/memp.h
-.\objects\stats.o: ..\lwip\src\include\lwip/priv/memp_std.h
-.\objects\stats.o: ..\lwip\src\include\lwip/priv/memp_std.h
-.\objects\stats.o: ..\lwip\src\include\lwip/priv/memp_priv.h
-.\objects\stats.o: ..\lwip\src\include\lwip/stats.h
-.\objects\stats.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
