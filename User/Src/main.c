@@ -167,10 +167,19 @@ void Send(uint8_t *data)
 	}
 }
 //-----------------------------------------------------
-void HAL_Delay(__IO uint32_t Delay)
+//printf÷ÿ∂®œÚ
+#include "stdio.h"
+int fputc(int ch, FILE *f)
+ {
+	while(HAL_OK != HAL_UART_Transmit(&huart1,(uint8_t *)&ch,1,100));
+	return ch;
+ }
+
+//-----------------------------------------------------
+/*void HAL_Delay(__IO uint32_t Delay)
 {
 	vTaskDelay(Delay);
-}
+}*/
 static void vTaskTaskUserIF(void *pvParameters)
 {
 	uint8_t temp;
@@ -191,7 +200,6 @@ uint32_t reg[32];
 char ch[30];
 static void vTaskLed(void *pvParameters)
 {
-	uint8_t t=0;
 	while(1)
 	{
 		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);
@@ -199,19 +207,7 @@ static void vTaskLed(void *pvParameters)
 		vTaskDelay(500);
 		HAL_GPIO_TogglePin(GPIOG,GPIO_PIN_7);
 		vTaskDelay(500);
-//		if(t<20)
-//		{
-//			t++;
-//			if(t == 10)
-//				{
-//				for(uint8_t i=0;i<32;i++){
-//			HAL_ETH_ReadPHYRegister(&heth, i, &reg[i]);
-//				sprintf(ch,"ºƒ¥Ê∆˜%d:%#8x\r\n",i,reg[i]);
-//				HAL_UART_Transmit(&huart1,(uint8_t*)ch,20,200);
-//				delay(1000000);
-//				}
-//			}
-//		}
+
 	}
 }
 
@@ -224,12 +220,12 @@ static void vTaskMsgPro(void *pvParameters)
 }
 static void AppTaskCreate (void)
 {
-/*	xTaskCreate(vTaskTaskUserIF,
+	xTaskCreate(vTaskTaskUserIF,
 							"vTaskTaskUserIF",
 							512,
 							NULL,
 							1,
-							&xHandleTaskUserIF);*/
+							&xHandleTaskUserIF);
 	
 	xTaskCreate(vTaskLed,
 							"vTaskLed",
