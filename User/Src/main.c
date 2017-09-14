@@ -176,10 +176,10 @@ int fputc(int ch, FILE *f)
  }
 
 //-----------------------------------------------------
-/*void HAL_Delay(__IO uint32_t Delay)
+void HAL_Delay(__IO uint32_t Delay)
 {
 	vTaskDelay(Delay);
-}*/
+}
 static void vTaskTaskUserIF(void *pvParameters)
 {
 	uint8_t temp;
@@ -248,7 +248,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	__set_PRIMASK(1);
+
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -290,6 +290,7 @@ int main(void)
 	memcpy(Tx,"USART TEST\r\n",18);
 //	HAL_UART_Transmit_IT(&huart1, Tx, sizeof(Tx));
 	Send(Tx);
+	printf("printf÷ÿ∂®œÚ\r\n");
 	HAL_UART_Receive_IT(&huart1, Rx, 1);
 	
 	for(uint8_t i=0;i<32;i++){
@@ -298,6 +299,7 @@ int main(void)
 		HAL_UART_Transmit(&huart1,(uint8_t*)ch,20,200);
 		delay(1000000);
 	}
+		__set_PRIMASK(1);
 	AppTaskCreate();
 http_server_netconn_init();
 	vTaskStartScheduler();
