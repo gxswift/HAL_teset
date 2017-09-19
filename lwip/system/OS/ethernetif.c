@@ -102,16 +102,16 @@ __ALIGN_BEGIN uint8_t Tx_Buff[ETH_TXBUFNB][ETH_TX_BUF_SIZE] __ALIGN_END; /* Ethe
 
 /* Semaphore to signal incoming packets */
 SemaphoreHandle_t s_xSemaphore = NULL;
-//static struct netif *s_pxNetIf = NULL;
+static struct netif *s_pxNetIf = NULL;
 /* Global Ethernet handle */
 extern ETH_HandleTypeDef heth;
 
 /* USER CODE BEGIN 3 */
-
+void ethernetif_input( void * pvParameters );
 /* USER CODE END 3 */
 
 /* Private functions ---------------------------------------------------------*/
-static void ethernetif_input( void const * argument );
+//static void ethernetif_input( void const * argument );
 void HAL_ETH_MspInit(ETH_HandleTypeDef* ethHandle)
 {
   GPIO_InitTypeDef GPIO_InitStruct;
@@ -248,16 +248,10 @@ static void low_level_init(struct netif *netif)
 //  TaskHandle_t handle;
 /* Init ETH */
 
-   uint8_t MACAddr[6] ;
+  uint8_t MACAddr[6] = { MAC_ADDR0, MAC_ADDR1, MAC_ADDR2, MAC_ADDR3, MAC_ADDR4, MAC_ADDR5 } ;
   heth.Instance = ETH;
   heth.Init.AutoNegotiation = ETH_AUTONEGOTIATION_ENABLE;
   heth.Init.PhyAddress = LAN8742A_PHY_ADDRESS;
-  MACAddr[0] = 0x00;
-  MACAddr[1] = 0x80;
-  MACAddr[2] = 0xE1;
-  MACAddr[3] = 0x00;
-  MACAddr[4] = 0x00;
-  MACAddr[5] = 0x00;
   heth.Init.MACAddr = &MACAddr[0];
   heth.Init.RxMode = ETH_RXINTERRUPT_MODE;
   heth.Init.ChecksumMode = ETH_CHECKSUM_BY_HARDWARE;
@@ -310,14 +304,14 @@ static void low_level_init(struct netif *netif)
 //	vSemaphoreCreateBinary(s_xSemaphore);
   if (s_xSemaphore == NULL)
   {
-    s_xSemaphore= xSemaphoreCreateCounting(40,0);
+    s_xSemaphore= xSemaphoreCreateCounting(20,0);
   }
 
 ///* create the task that handles the ETH_MAC */
 ////  osThreadDef(EthIf, ethernetif_input, osPriorityRealtime, 0, INTERFACE_THREAD_STACK_SIZE);
 ////  osThreadCreate (osThread(EthIf), netif);
-//	s_pxNetIf =netif;
-	xTaskCreate(ethernetif_input,"EthIf",INTERFACE_THREAD_STACK_SIZE,netif,6,NULL);
+	s_pxNetIf =netif;
+	xTaskCreate(ethernetif_input,"EthIf",INTERFACE_THREAD_STACK_SIZE,NULL,6,NULL);
   /* Enable MAC and DMA transmission and reception */
   HAL_ETH_Start(&heth);
 
@@ -537,47 +531,47 @@ static struct pbuf * low_level_input(struct netif *netif)
  * @param netif the lwip network interface structure for this ethernetif
  */
 #define emacBLOCK_TIME_WAITING_FOR_INPUT	( ( portTickType ) 100 )
-void ethernetif_input( void const * argument ) 
-{
-  struct pbuf *p;
-  struct netif *netif = (struct netif *) argument;
-//  portBASE_TYPE taskWoken = pdFALSE; 
-  for( ;; )
-  {
-//    if (osSemaphoreWait( s_xSemaphore, TIME_WAITING_FOR_INPUT)==osOK)
-		if (xSemaphoreTake( s_xSemaphore, emacBLOCK_TIME_WAITING_FOR_INPUT)==pdTRUE)
-    {
-      do
-      {   
-        p = low_level_input( netif );
-        if   (p != NULL)
-        {
-          if (netif->input( p, netif) != ERR_OK )
-          {
-            pbuf_free(p);
-          }
-        }
-      } while(p!=NULL);
-    }
-  }
-}
-//void ethernetif_input( void * pvParameters )
+//void ethernetif_input( void const * argument ) 
 //{
 //  struct pbuf *p;
-//  
+//  struct netif *netif = (struct netif *) argument;
+////  portBASE_TYPE taskWoken = pdFALSE; 
 //  for( ;; )
 //  {
-//    if (xSemaphoreTake( s_xSemaphore, emacBLOCK_TIME_WAITING_FOR_INPUT)==pdTRUE)
+////    if (osSemaphoreWait( s_xSemaphore, TIME_WAITING_FOR_INPUT)==osOK)
+//		if (xSemaphoreTake( s_xSemaphore, emacBLOCK_TIME_WAITING_FOR_INPUT)==pdTRUE)
 //    {
-//      p = low_level_input( s_pxNetIf );
-//      if (ERR_OK != s_pxNetIf->input( p, s_pxNetIf))
-//      {
-//        pbuf_free(p);
-//        p=NULL;
-//      }
+//      do
+//      {   
+//        p = low_level_input( netif );
+//        if   (p != NULL)
+//        {
+//          if (netif->input( p, netif) != ERR_OK )
+//          {
+//            pbuf_free(p);
+//          }
+//        }
+//      } while(p!=NULL);
 //    }
 //  }
-//}  
+//}
+void ethernetif_input( void * pvParameters )
+{
+  struct pbuf *p;
+  
+  for( ;; )
+  {
+    if (xSemaphoreTake( s_xSemaphore, emacBLOCK_TIME_WAITING_FOR_INPUT)==pdTRUE)
+    {
+      p = low_level_input( s_pxNetIf );
+      if (ERR_OK != s_pxNetIf->input( p, s_pxNetIf))
+      {
+        pbuf_free(p);
+        p=NULL;
+      }
+    }
+  }
+}  
 #if !LWIP_ARP
 /**
  * This function has to be completed by user in case of ARP OFF.
