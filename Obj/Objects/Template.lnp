@@ -144,9 +144,9 @@
 ".\objects\mld6.o"
 ".\objects\nd6.o"
 ".\objects\sys_arch.o"
-".\objects\ethernetif_1.o"
+".\objects\ethernetif.o"
 ".\objects\httpserver-netconn.o"
---strict --scatter ".\Objects\Template.sct"
+--library_type=microlib --strict --scatter ".\Objects\Template.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Listings\Template.map" -o .\Objects\Template.axf
