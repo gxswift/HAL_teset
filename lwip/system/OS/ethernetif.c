@@ -331,7 +331,7 @@ static void low_level_init(struct netif *netif)
   HAL_ETH_ReadPHYRegister(&heth, PHY_ISFR , &regvalue);
 
 /* USER CODE BEGIN PHY_POST_CONFIG */ 
-    
+//printf("PHY_ISFR:0x%X\r\n",regvalue);//11001010;Õý³£
 /* USER CODE END PHY_POST_CONFIG */
 
 #endif /* LWIP_ARP || LWIP_ETHERNET */
@@ -563,12 +563,15 @@ void ethernetif_input( void * pvParameters )
   {
     if (xSemaphoreTake( s_xSemaphore, emacBLOCK_TIME_WAITING_FOR_INPUT)==pdTRUE)
     {
-      p = low_level_input( s_pxNetIf );
-      if (ERR_OK != s_pxNetIf->input( p, s_pxNetIf))
-      {
-        pbuf_free(p);
-        p=NULL;
-      }
+			do
+			{
+				p = low_level_input( s_pxNetIf ); 
+				if (p!=NULL)
+					if (ERR_OK != s_pxNetIf->input( p, s_pxNetIf))
+					{
+						pbuf_free(p);
+					}
+			}while(p!=NULL);
     }
   }
 }  

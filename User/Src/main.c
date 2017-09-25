@@ -285,19 +285,20 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
-	memcpy(Tx,"USART TEST\r\n",18);
+/*	memcpy(Tx,"USART TEST\r\n",18);
 //	HAL_UART_Transmit_IT(&huart1, Tx, sizeof(Tx));
 	Send(Tx);
-	printf("printf重定向\r\n");
-	HAL_UART_Receive_IT(&huart1, Rx, 1);
+	printf("printf重定向\r\n");//重定向正常
+
 	
 	for(uint8_t i=0;i<32;i++){
 	HAL_ETH_ReadPHYRegister(&heth, i, &reg[i]);
 		sprintf(ch,"寄存器%d:%#8x\r\n",i,reg[i]);
 		HAL_UART_Transmit(&huart1,(uint8_t*)ch,20,200);
 		delay(1000000);
-	}
-
+	}*/
+	//寄存器正常
+	HAL_UART_Receive_IT(&huart1, Rx, 1);
 	AppTaskCreate();
 http_server_netconn_init();
 	vTaskStartScheduler();

@@ -98,24 +98,24 @@ void MX_LWIP_Init(void)
 #endif
   /* add the network interface (IPv4/IPv6) with RTOS */
   Netif_Init_Flag = netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &tcpip_input);
-	if(Netif_Init_Flag==NULL)
-		
-		Send("添加失败\r\n");
-	else
-	Send("添加成功\r\n");
-	//HAL_UART_Transmit(&huart1, "添加成功\r\n", 11,200);
+//	if(Netif_Init_Flag==NULL)
+//		
+//		Send("添加失败\r\n");
+//	else
+//	  Send("添加成功\r\n")//添加成功
+	
   /* Registers the default network interface */
   netif_set_default(&gnetif);
 
   if (netif_is_link_up(&gnetif))
   {
-				Send("设置成功\r\n");
+			//	Send("设置成功\r\n");
     /* When the netif is fully configured this function must be called */
     netif_set_up(&gnetif);
   }
   else
   {
-		Send("设置失败\r\n");
+	//	Send("设置失败\r\n");
     /* When the netif link is down this function must be called */
     netif_set_down(&gnetif);
   }
