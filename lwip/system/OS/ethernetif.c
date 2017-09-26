@@ -311,7 +311,7 @@ static void low_level_init(struct netif *netif)
 ////  osThreadDef(EthIf, ethernetif_input, osPriorityRealtime, 0, INTERFACE_THREAD_STACK_SIZE);
 ////  osThreadCreate (osThread(EthIf), netif);
 	s_pxNetIf =netif;
-	xTaskCreate(ethernetif_input,"EthIf",INTERFACE_THREAD_STACK_SIZE,NULL,6,NULL);
+	xTaskCreate(ethernetif_input,"EthIf",INTERFACE_THREAD_STACK_SIZE,NULL,7,NULL);
   /* Enable MAC and DMA transmission and reception */
   HAL_ETH_Start(&heth);
 

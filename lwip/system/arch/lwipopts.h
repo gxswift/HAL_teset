@@ -182,9 +182,11 @@ The STM32F4xx allows computing and verifying the IP, UDP, TCP and ICMP checksums
 #define TCP_SNDQUEUELOWAT 5
 /*----- Value in opt.h for TCP_WND_UPDATE_THRESHOLD: LWIP_MIN(TCP_WND/4, TCP_MSS*4) -----*/
 #define TCP_WND_UPDATE_THRESHOLD 536
-//#define CHECKSUM_GEN_ICMP                    0
+
 /* Minimal changes to opt.h required for etharp unit tests: */
-#define ETHARP_SUPPORT_STATIC_ENTRIES   1
+//#define ETHARP_SUPPORT_STATIC_ENTRIES   1
+//#define ETHARP_TABLE_MATCH_NETIF 1
+
 
 #define LWIP_DEBUG
 #define LWIP_DBG_TYPES_ON LWIP_DBG_ON|LWIP_DBG_TRACE|LWIP_DBG_STATE|LWIP_DBG_FRESH

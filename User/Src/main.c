@@ -299,8 +299,17 @@ int main(void)
 	}*/
 	//¼Ä´æÆ÷Õý³£
 	HAL_UART_Receive_IT(&huart1, Rx, 1);
+	#ifdef USE_DHCP
+	xTaskCreate(DHCP_thread,
+							"DHCP_Thread",
+							512,
+							NULL,
+							3,
+							NULL);
+	#endif
 	AppTaskCreate();
-http_server_netconn_init();
+	
+//http_server_netconn_init();
 	vTaskStartScheduler();
 	
   /* Infinite loop */
