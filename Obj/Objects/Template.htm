@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Template.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Template.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Mon Sep 25 22:21:32 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Tue Sep 26 11:22:00 2017
 <BR><P>
 <H3>Maximum Stack Usage =        824 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -683,7 +683,6 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ETH_Init
-<LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;low_level_init
 </UL>
 
 <P><STRONG><a name="[a3]"></a>HAL_ETH_RxCpltCallback</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, ethernetif.o(i.HAL_ETH_RxCpltCallback))
@@ -722,7 +721,6 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ETH_Init
-<LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;low_level_init
 </UL>
 
 <P><STRONG><a name="[ac]"></a>HAL_GPIO_Init</STRONG> (Thumb, 486 bytes, Stack size 24 bytes, stm32f4xx_hal_gpio.o(i.HAL_GPIO_Init))
@@ -5289,13 +5287,11 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> ip4_frag.o(i.ip4_frag)
 </UL>
-<P><STRONG><a name="[15b]"></a>low_level_init</STRONG> (Thumb, 272 bytes, Stack size 32 bytes, ethernetif.o(i.low_level_init))
+<P><STRONG><a name="[15b]"></a>low_level_init</STRONG> (Thumb, 228 bytes, Stack size 32 bytes, ethernetif.o(i.low_level_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = low_level_init &rArr; HAL_ETH_Init &rArr; ETH_MACDMAConfig &rArr; HAL_Delay &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ETH_WritePHYRegister
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ETH_Start
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ETH_ReadPHYRegister
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ETH_Init
 <LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ETH_DMATxDescListInit
 <LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ETH_DMARxDescListInit

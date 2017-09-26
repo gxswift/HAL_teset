@@ -321,17 +321,18 @@ static void low_level_init(struct netif *netif)
   
 
   /* Read Register Configuration */
-  HAL_ETH_ReadPHYRegister(&heth, PHY_ISFR, &regvalue);
-  regvalue |= (PHY_ISFR_INT4);
+	//没用到中断    查询连接状态   BSR 1<<2
+//  HAL_ETH_ReadPHYRegister(&heth, PHY_ISFR, &regvalue);
+//  regvalue |= (PHY_ISFR_INT4);
 
-  /* Enable Interrupt on change of link status */ 
-  HAL_ETH_WritePHYRegister(&heth, PHY_ISFR , regvalue );
-  
-  /* Read Register Configuration */
-  HAL_ETH_ReadPHYRegister(&heth, PHY_ISFR , &regvalue);
+//  /* Enable Interrupt on change of link status */ 
+//  HAL_ETH_WritePHYRegister(&heth, PHY_ISFR , regvalue );
+//  
+//  /* Read Register Configuration */
+//  HAL_ETH_ReadPHYRegister(&heth, PHY_ISFR , &regvalue);
 
-/* USER CODE BEGIN PHY_POST_CONFIG */ 
-//printf("PHY_ISFR:0x%X\r\n",regvalue);//11001010;正常
+///* USER CODE BEGIN PHY_POST_CONFIG */ 
+//printf("PHY_ISFR:0x%X\r\n",regvalue);//11001010;
 /* USER CODE END PHY_POST_CONFIG */
 
 #endif /* LWIP_ARP || LWIP_ETHERNET */
@@ -676,146 +677,6 @@ u32_t sys_now(void)
 
 /* USER CODE END 7 */
 
-#if LWIP_NETIF_LINK_CALLBACK
-/**
-  * @brief  Link callback function, this function is called on change of link status
-  *         to update low level driver configuration.
-* @param  netif: The network interface
-  * @retval None
-  */
-/**
-  * @brief  This function sets the netif link status.
-  * @param  netif: the network interface
-  * @retval None
-  */
-void ethernetif_set_link(void const *argument)
-{
-  uint32_t regvalue = 0;
-  struct link_str *link_arg = (struct link_str *)argument;
-  
-  for(;;)
-  {
-    if (osSemaphoreWait( link_arg->semaphore, 100)== osOK)
-    {
-      /* Read PHY_MISR*/
-      HAL_ETH_ReadPHYRegister(&EthHandle, PHY_MISR, &regvalue);
-      
-      /* Check whether the link interrupt has occurred or not */
-      if((regvalue & PHY_LINK_INTERRUPT) != (uint16_t)RESET)
-      {
-        /* Read PHY_SR*/
-        HAL_ETH_ReadPHYRegister(&EthHandle, PHY_SR, &regvalue);
-        
-        /* Check whether the link is up or down*/
-        if((regvalue & PHY_LINK_STATUS)!= (uint16_t)RESET)
-        {
-          netif_set_link_up(link_arg->netif);
-        }
-        else
-        {
-          netif_set_link_down(link_arg->netif);
-        }
-      }
-    }
-  }
-}
-void ethernetif_update_config(struct netif *netif)
-{
-  __IO uint32_t tickstart = 0;
-  uint32_t regvalue = 0;
-  
-  if(netif_is_link_up(netif))
-  { 
-    /* Restart the auto-negotiation */
-    if(heth.Init.AutoNegotiation != ETH_AUTONEGOTIATION_DISABLE)
-    {
-      /* Enable Auto-Negotiation */
-      HAL_ETH_WritePHYRegister(&heth, PHY_BCR, PHY_AUTONEGOTIATION);
-      
-      /* Get tick */
-      tickstart = HAL_GetTick();
-      
-      /* Wait until the auto-negotiation will be completed */
-      do
-      {
-        HAL_ETH_ReadPHYRegister(&heth, PHY_BSR, &regvalue);
-        
-        /* Check for the Timeout ( 1s ) */
-        if((HAL_GetTick() - tickstart ) > 1000)
-        {     
-          /* In case of timeout */ 
-          goto error;
-        }   
-      } while (((regvalue & PHY_AUTONEGO_COMPLETE) != PHY_AUTONEGO_COMPLETE));
-      
-      /* Read the result of the auto-negotiation */
-      HAL_ETH_ReadPHYRegister(&heth, PHY_SR, &regvalue);
-      
-      /* Configure the MAC with the Duplex Mode fixed by the auto-negotiation process */
-      if((regvalue & PHY_DUPLEX_STATUS) != (uint32_t)RESET)
-      {
-        /* Set Ethernet duplex mode to Full-duplex following the auto-negotiation */
-        heth.Init.DuplexMode = ETH_MODE_FULLDUPLEX;  
-      }
-      else
-      {
-        /* Set Ethernet duplex mode to Half-duplex following the auto-negotiation */
-        heth.Init.DuplexMode = ETH_MODE_HALFDUPLEX;           
-      }
-      /* Configure the MAC with the speed fixed by the auto-negotiation process */
-      if(regvalue & PHY_SPEED_STATUS)
-      {  
-        /* Set Ethernet speed to 10M following the auto-negotiation */
-        heth.Init.Speed = ETH_SPEED_10M; 
-      }
-      else
-      {   
-        /* Set Ethernet speed to 100M following the auto-negotiation */ 
-        heth.Init.Speed = ETH_SPEED_100M;
-      }
-    }
-    else /* AutoNegotiation Disable */
-    {
-    error:
-      /* Check parameters */
-      assert_param(IS_ETH_SPEED(heth.Init.Speed));
-      assert_param(IS_ETH_DUPLEX_MODE(heth.Init.DuplexMode));
-      
-      /* Set MAC Speed and Duplex Mode to PHY */
-      HAL_ETH_WritePHYRegister(&heth, PHY_BCR, ((uint16_t)(heth.Init.DuplexMode >> 3) |
-                                                     (uint16_t)(heth.Init.Speed >> 1))); 
-    }
-
-    /* ETHERNET MAC Re-Configuration */
-    HAL_ETH_ConfigMAC(&heth, (ETH_MACInitTypeDef *) NULL);
-
-    /* Restart MAC interface */
-    HAL_ETH_Start(&heth);   
-  }
-  else
-  {
-    /* Stop MAC interface */
-    HAL_ETH_Stop(&heth);
-  }
-
-  ethernetif_notify_conn_changed(netif);
-}
-
-/* USER CODE BEGIN 8 */
-/**
-  * @brief  This function notify user about link status changement.
-  * @param  netif: the network interface
-  * @retval None
-  */
-__weak void ethernetif_notify_conn_changed(struct netif *netif)
-{
-  /* NOTE : This is function could be implemented in user file 
-            when the callback is needed,
-  */
-
-}
-/* USER CODE END 8 */ 
-#endif /* LWIP_NETIF_LINK_CALLBACK */
 
 /* USER CODE BEGIN 9 */
 
