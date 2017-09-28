@@ -256,7 +256,8 @@ static void low_level_init(struct netif *netif)
   heth.Init.RxMode = ETH_RXINTERRUPT_MODE;
   heth.Init.ChecksumMode = ETH_CHECKSUM_BY_HARDWARE;
   heth.Init.MediaInterface = ETH_MEDIA_INTERFACE_RMII;
-
+	heth.Init.Speed = ETH_SPEED_100M;
+	heth.Init.DuplexMode = ETH_MODE_FULLDUPLEX;
   /* USER CODE BEGIN MACADDRESS */
     
   /* USER CODE END MACADDRESS */
@@ -278,7 +279,6 @@ static void low_level_init(struct netif *netif)
 
   /* set MAC hardware address length */
   netif->hwaddr_len = ETH_HWADDR_LEN;
-  
   /* set MAC hardware address */
   netif->hwaddr[0] =  heth.Init.MACAddr[0];
   netif->hwaddr[1] =  heth.Init.MACAddr[1];
@@ -291,6 +291,7 @@ static void low_level_init(struct netif *netif)
   netif->mtu = 1500;
   
   /* Accept broadcast address and ARP traffic */
+	
   /* don't set NETIF_FLAG_ETHARP if this device is not an ethernet one */
   #if LWIP_ARP
     netif->flags |= NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP;
@@ -311,7 +312,7 @@ static void low_level_init(struct netif *netif)
 ////  osThreadDef(EthIf, ethernetif_input, osPriorityRealtime, 0, INTERFACE_THREAD_STACK_SIZE);
 ////  osThreadCreate (osThread(EthIf), netif);
 	s_pxNetIf =netif;
-	xTaskCreate(ethernetif_input,"EthIf",INTERFACE_THREAD_STACK_SIZE,NULL,7,NULL);
+	xTaskCreate(ethernetif_input,"EthIf",INTERFACE_THREAD_STACK_SIZE,NULL,3,NULL);
   /* Enable MAC and DMA transmission and reception */
   HAL_ETH_Start(&heth);
 

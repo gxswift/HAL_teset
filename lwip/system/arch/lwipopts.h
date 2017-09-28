@@ -109,8 +109,10 @@ a lot of data that needs to be copied, this should be set high. */
 
 /* ---------- Statistics options ---------- */
 #define LWIP_STATS 0
-/*----- WITH_RTOS enabled (Since FREERTOS is set) -----*/
-#define WITH_RTOS 1
+/* ---------- UDP options ---------- */
+#define LWIP_UDP                1
+#define UDP_TTL                 255
+
 /*----- CHECKSUM_BY_HARDWARE disabled -----*/
 /*
    --------------------------------------
@@ -158,12 +160,13 @@ The STM32F4xx allows computing and verifying the IP, UDP, TCP and ICMP checksums
   #define CHECKSUM_GEN_ICMP               1
 #endif
 
-#define LWIP_ETHERNET 1
+
 #define LWIP_DNS_SECURE 7
 #define LWIP_COMPAT_MUTEX							1
 #define LWIP_COMPAT_MUTEX_ALLOWED
 #define LWIP_PROVIDE_ERRNO
-#define LWIP_ARP	1
+//#define LWIP_ARP	1
+//#define LWIP_ETHERNET 1//默认已配置
 
 #define LWIP_DHCP                       0 //使能DHCP模塊
 #define MEM_ALIGNMENT                   4  //必须4字节对齐 曾出现在memset的时候hardfault
@@ -177,7 +180,7 @@ The STM32F4xx allows computing and verifying the IP, UDP, TCP and ICMP checksums
 #define DEFAULT_TCP_RECVMBOX_SIZE       6
 #define DEFAULT_ACCEPTMBOX_SIZE         6
 #define DEFAULT_THREAD_STACKSIZE        500
-#define TCPIP_THREAD_PRIO               2
+#define TCPIP_THREAD_PRIO               5
 /*----- Value in opt.h for TCP_SNDQUEUELOWAT: LWIP_MAX(TCP_SND_QUEUELEN)/2, 5) -*/
 #define TCP_SNDQUEUELOWAT 5
 /*----- Value in opt.h for TCP_WND_UPDATE_THRESHOLD: LWIP_MIN(TCP_WND/4, TCP_MSS*4) -----*/
