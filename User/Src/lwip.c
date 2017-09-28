@@ -121,9 +121,8 @@ void MX_LWIP_Init(void)
   }
 
   /* Start DHCP negotiation for a network interface (IPv4) */
-#if LWIP_DHCP	
-  dhcp_start(&gnetif);
-#endif
+  /* Notify user about the network interface config */
+  User_notification(&gnetif);
 
 /* USER CODE BEGIN 3 */
 
@@ -309,9 +308,9 @@ void User_notification(struct netif *netif)
   * @param  argument: network interface
   * @retval None
   */
-void DHCP_thread(void const * argument)
+void DHCP_thread(void *pvParameters)
 {
-  struct netif *netif = (struct netif *) argument;
+  struct netif *netif = (struct netif *) &gnetif;
   ip_addr_t ipaddr;
   ip_addr_t netmask;
   ip_addr_t gw;
@@ -350,9 +349,9 @@ void DHCP_thread(void const * argument)
             dhcp_stop(netif);
             
             /* Static address used */
-            IP_ADDR4(&ipaddr, IP_ADDR0 ,IP_ADDR1 , IP_ADDR2 , IP_ADDR3 );
-            IP_ADDR4(&netmask, NETMASK_ADDR0, NETMASK_ADDR1, NETMASK_ADDR2, NETMASK_ADDR3);
-            IP_ADDR4(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
+						IP4_ADDR(&ipaddr,192,168,1,105);
+						IP4_ADDR(&netmask,255,255,255,0);
+						IP4_ADDR(&gw,192,168,1,1);
             netif_set_addr(netif, ip_2_ip4(&ipaddr), ip_2_ip4(&netmask), ip_2_ip4(&gw));
             
           }

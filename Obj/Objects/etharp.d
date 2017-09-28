@@ -33,6 +33,11 @@
 .\objects\etharp.o: ..\lwip\src\include\lwip/prot/etharp.h
 .\objects\etharp.o: ..\lwip\src\include\lwip/snmp.h
 .\objects\etharp.o: ..\lwip\src\include\lwip/dhcp.h
+.\objects\etharp.o: ..\lwip\src\include\lwip/udp.h
+.\objects\etharp.o: ..\lwip\src\include\lwip/ip.h
+.\objects\etharp.o: ..\lwip\src\include\lwip/ip6.h
+.\objects\etharp.o: ..\lwip\src\include\lwip/prot/ip.h
+.\objects\etharp.o: ..\lwip\src\include\lwip/prot/udp.h
 .\objects\etharp.o: ..\lwip\src\include\lwip/autoip.h
 .\objects\etharp.o: ..\lwip\src\include\netif/ethernet.h
 .\objects\etharp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
