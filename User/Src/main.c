@@ -170,7 +170,7 @@ void Send(uint8_t *data)
 #include "stdio.h"
 int fputc(int ch, FILE *f)
  {
-	while(HAL_OK != HAL_UART_Transmit(&huart1,(uint8_t *)&ch,1,100));
+	HAL_UART_Transmit(&huart1,(uint8_t *)&ch,1,100);
 	return ch;
  }
 
@@ -309,7 +309,7 @@ int main(void)
 	#endif
 	AppTaskCreate();
 	
-//http_server_netconn_init();
+ http_server_netconn_init();
 	vTaskStartScheduler();
 	
   /* Infinite loop */

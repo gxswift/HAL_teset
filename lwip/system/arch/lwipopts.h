@@ -173,7 +173,7 @@ The STM32F4xx allows computing and verifying the IP, UDP, TCP and ICMP checksums
 
 #define MEM_ALIGNMENT                   4  //必须4字节对齐 曾出现在memset的时候hardfault
 #define LWIP_DNS                        1
-
+#define LWIP_NETIF_HOSTNAME 1
 
 #define TCPIP_THREAD_NAME              "TCP/IP"
 #define TCPIP_THREAD_STACKSIZE          1000
