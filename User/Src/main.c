@@ -48,6 +48,8 @@
 
 #include "lwip.h"
 #include "httpserver-netconn.h"
+#include "smtp.h"
+#include "lwip/apps/httpd.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -175,6 +177,30 @@ int fputc(int ch, FILE *f)
  }
 
 //-----------------------------------------------------
+void my_smtp_result_fn(void *arg, u8_t smtp_result, u16_t srv_err, err_t err)
+{
+   printf("mail (%p) sent with results: 0x%02x, 0x%04x, 0x%08x\n", arg,
+         smtp_result, srv_err, err);
+ }
+/*
+ static void my_smtp_test(void)
+ {
+   smtp_set_server_addr("mymailserver.org");
+ //-> set both username and password as NULL if no auth needed
+   smtp_set_auth("username", "password");
+  smtp_send_mail("sender", "recipient", "subject", "body", my_smtp_result_fn,
+                  some_argument);
+ }
+ */
+ static void my_smtp_test(void)
+ {
+   //smtp_set_server_addr("smtp.qq.com");
+	 smtp_set_server_addr("14.18.245.164");
+ //-> set both username and password as NULL if no auth needed
+   smtp_set_auth("327308880@qq.com", "000000000");
+  smtp_send_mail("327308880@qq.com", "853129649@qq.com", "subject", "body", my_smtp_result_fn,
+                  0);
+ }//DEBUG tcp_connect failed: -4
 void HAL_Delay(__IO uint32_t Delay)
 {
 	vTaskDelay(Delay);
@@ -242,7 +268,7 @@ static void AppTaskCreate (void)
 							
 }
 /* USER CODE END 0 */
-
+extern void httpd_ssi_init(void);
 int main(void)
 {
 
@@ -308,8 +334,10 @@ int main(void)
 							NULL);
 	#endif
 	AppTaskCreate();
-	
- http_server_netconn_init();
+	httpd_ssi_init();
+	httpd_init();
+// http_server_netconn_init();
+ my_smtp_test();
 	vTaskStartScheduler();
 	
   /* Infinite loop */

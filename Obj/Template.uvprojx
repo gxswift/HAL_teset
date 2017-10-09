@@ -50,7 +50,7 @@
           <OutputName>Template</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
@@ -365,7 +365,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F429xx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Core;..\Lib\Inc;..\User\Inc;..\User;..\FreeRTOS\include;..\FreeRTOS\portable;..\lwip\src\include;..\lwip\system\OS;..\lwip\system;..\lwip\system\arch;..\NetDemo</IncludePath>
+              <IncludePath>..\Core;..\Lib\Inc;..\User\Inc;..\User;..\FreeRTOS\include;..\FreeRTOS\portable;..\lwip\src\include;..\lwip\system\OS;..\lwip\system;..\lwip\system\arch;..\NetDemo;..\lwip\src\apps\httpd;..\lwip\src\include\lwip\apps</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1182,6 +1182,26 @@
               <FileName>httpserver-netconn.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\NetDemo\httpserver-netconn.c</FilePath>
+            </File>
+            <File>
+              <FileName>smtp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\NetDemo\smtp.c</FilePath>
+            </File>
+            <File>
+              <FileName>fs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\apps\httpd\fs.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\apps\httpd\httpd.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpd_cgi_ssi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\NetDemo\httpd_cgi_ssi.c</FilePath>
             </File>
           </Files>
         </Group>
