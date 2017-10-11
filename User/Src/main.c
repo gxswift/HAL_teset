@@ -269,6 +269,7 @@ static void AppTaskCreate (void)
 }
 /* USER CODE END 0 */
 extern void httpd_ssi_init(void);
+extern void httpd_cgi_init(void);
 int main(void)
 {
 
@@ -335,6 +336,7 @@ int main(void)
 	#endif
 	AppTaskCreate();
 	httpd_ssi_init();
+	httpd_cgi_init();
 	httpd_init();
 // http_server_netconn_init();
  my_smtp_test();

@@ -12,8 +12,8 @@
 .\objects\httpd_cgi_ssi.o: ..\lwip\src\include\lwip/opt.h
 .\objects\httpd_cgi_ssi.o: ..\lwip\system\arch\lwipopts.h
 .\objects\httpd_cgi_ssi.o: ..\lwip\src\include\lwip/debug.h
-.\objects\httpd_cgi_ssi.o: ..\lwip\src\include\lwip\apps\httpd.h
-.\objects\httpd_cgi_ssi.o: ..\lwip\src\include\lwip\apps\httpd_opts.h
+.\objects\httpd_cgi_ssi.o: ..\lwip\src\include\lwip/apps/httpd.h
+.\objects\httpd_cgi_ssi.o: ..\lwip\src\include\lwip/apps/httpd_opts.h
 .\objects\httpd_cgi_ssi.o: ..\lwip\src\include\lwip/err.h
 .\objects\httpd_cgi_ssi.o: ..\lwip\src\include\lwip/pbuf.h
 .\objects\httpd_cgi_ssi.o: ..\lwip\src\include\lwip/tcp.h
