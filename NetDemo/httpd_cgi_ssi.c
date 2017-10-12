@@ -9,13 +9,16 @@
 #include "stm32f4xx_hal.h"
 
 #define NUM_CONFIG_CGI_URIS	3 //CGI的URI数量
-#define NUM_CONFIG_SSI_TAGS	2  //SSI的TAG数量
+#define NUM_CONFIG_SSI_TAGS	3  //SSI的TAG数量
 
 //控制LED和BEEP的CGI handler
 const char* Login_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[]);
 const char* Set_CGI_Handler(int iIndex,int iNumParams,char *pcParam[],char *pcValue[]);
 const char* Ctrl_CGI_Handler(int iIndex,int iNumParams,char *pcParam[],char *pcValue[]);
 
+
+extern uint8_t Led_Flag;
+extern uint16_t Led_Time;
 static const tCGI ppcURLs[]= //cgi程序
 {
 	{"/login.cgi",Login_CGI_Handler},
@@ -25,19 +28,34 @@ static const tCGI ppcURLs[]= //cgi程序
 static const char *ppcTAGs[]=  //SSI的Tag
 {
 	"w", //温度值
-	"t"
+	"t",
+	"s"
 };
 
 
 //SSIHandler中需要用到的处理ADC的函数
-void ADC_Handler(char *pcInsert)
+void Tim_Handler(char *pcInsert)
 { 
     uint32_t temp = 0;   
 	temp = HAL_GetTick();
 		sprintf(pcInsert,"%d,%d",temp/1000,temp%1000);
 }
-
-
+extern short Get_Temprate(void);
+void Temp_Handler(char *pcInsert)
+{ 
+    uint32_t temp = 0; 
+		temp = Get_Temprate(); 
+		sprintf(pcInsert,"%d.%d℃",temp/100,temp%100);
+}
+void State_Handler(char *pcInsert)
+{ 
+	if(Led_Flag == 0)
+		sprintf(pcInsert,"LED开");
+	else if(Led_Flag == 1)
+		sprintf(pcInsert,"LED闪：%dms",Led_Time);
+	else
+		sprintf(pcInsert,"LED灭");
+}
 
 //SSI的Handler句柄
 static u16_t SSIHandler(int iIndex,char *pcInsert,int iInsertLen)
@@ -45,10 +63,13 @@ static u16_t SSIHandler(int iIndex,char *pcInsert,int iInsertLen)
 	switch(iIndex)
 	{
 		case 0: 
-
+				Temp_Handler(pcInsert);
 				break;
 		case 1:
-					ADC_Handler(pcInsert);
+					Tim_Handler(pcInsert);
+			break;
+		case 2:
+			State_Handler(pcInsert);
 			break;
 	}
 	return strlen(pcInsert);
@@ -109,8 +130,7 @@ const char *Login_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char 
       return "/index.html";      //????????????????????
 }
 
-extern uint8_t Led_Flag;
-extern uint16_t Led_Time;
+
 const char* Ctrl_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[])
 {
 	uint8_t i=0;  
@@ -122,10 +142,13 @@ const char* Ctrl_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char *
 		  if (strcmp(pcParam[i] , "sex")==0)  //????"led" ????LED1??
 		  {
 			if(strcmp(pcValue[i], "male") ==0)  //??LED1??
-				Led_Flag=1; //??LED1
-			else if(strcmp(pcValue[i],"female") == 0)
 				Led_Flag=0; //??LED1
-		  }
+			else if(strcmp(pcValue[i],"female") == 0)
+				Led_Flag=2; //??LED1
+			else if(strcmp(pcValue[i],"flash") == 0)
+				Led_Flag=1; //??LED1			
+			
+		  }	
 		}
 	 }
 	return "/control.html";   							//LED1?,BEEP?					
@@ -141,6 +164,7 @@ const char* Set_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char *p
 		{
 		  if (strcmp(pcParam[i] , "rate")==0)  //????"led" ????LED1??
 		  {
+				if(atoi(pcValue[i]))
 				Led_Time = atoi(pcValue[i])*100;
 		  }
 		}

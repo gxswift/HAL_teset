@@ -59,6 +59,8 @@
 .\objects\httpd_cgi_ssi.o: ..\Lib\Inc\stm32f4xx_hal_dma.h
 .\objects\httpd_cgi_ssi.o: ..\Lib\Inc\stm32f4xx_hal_dma_ex.h
 .\objects\httpd_cgi_ssi.o: ..\Lib\Inc\stm32f4xx_hal_cortex.h
+.\objects\httpd_cgi_ssi.o: ..\Lib\Inc\stm32f4xx_hal_adc.h
+.\objects\httpd_cgi_ssi.o: ..\Lib\Inc\stm32f4xx_hal_adc_ex.h
 .\objects\httpd_cgi_ssi.o: ..\Lib\Inc\stm32f4xx_hal_eth.h
 .\objects\httpd_cgi_ssi.o: ..\Lib\Inc\stm32f4xx_hal_flash.h
 .\objects\httpd_cgi_ssi.o: ..\Lib\Inc\stm32f4xx_hal_flash_ex.h

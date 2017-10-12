@@ -22,6 +22,8 @@
 .\objects\ethernetif.o: ..\Lib\Inc\stm32f4xx_hal_dma.h
 .\objects\ethernetif.o: ..\Lib\Inc\stm32f4xx_hal_dma_ex.h
 .\objects\ethernetif.o: ..\Lib\Inc\stm32f4xx_hal_cortex.h
+.\objects\ethernetif.o: ..\Lib\Inc\stm32f4xx_hal_adc.h
+.\objects\ethernetif.o: ..\Lib\Inc\stm32f4xx_hal_adc_ex.h
 .\objects\ethernetif.o: ..\Lib\Inc\stm32f4xx_hal_eth.h
 .\objects\ethernetif.o: ..\Lib\Inc\stm32f4xx_hal_flash.h
 .\objects\ethernetif.o: ..\Lib\Inc\stm32f4xx_hal_flash_ex.h

@@ -23,6 +23,8 @@
 .\objects\main.o: ..\Lib\Inc\stm32f4xx_hal_dma.h
 .\objects\main.o: ..\Lib\Inc\stm32f4xx_hal_dma_ex.h
 .\objects\main.o: ..\Lib\Inc\stm32f4xx_hal_cortex.h
+.\objects\main.o: ..\Lib\Inc\stm32f4xx_hal_adc.h
+.\objects\main.o: ..\Lib\Inc\stm32f4xx_hal_adc_ex.h
 .\objects\main.o: ..\Lib\Inc\stm32f4xx_hal_eth.h
 .\objects\main.o: ..\Lib\Inc\stm32f4xx_hal_flash.h
 .\objects\main.o: ..\Lib\Inc\stm32f4xx_hal_flash_ex.h

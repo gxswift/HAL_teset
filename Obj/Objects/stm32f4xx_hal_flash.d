@@ -22,6 +22,8 @@
 .\objects\stm32f4xx_hal_flash.o: ..\Lib\Inc\stm32f4xx_hal_dma.h
 .\objects\stm32f4xx_hal_flash.o: ..\Lib\Inc\stm32f4xx_hal_dma_ex.h
 .\objects\stm32f4xx_hal_flash.o: ..\Lib\Inc\stm32f4xx_hal_cortex.h
+.\objects\stm32f4xx_hal_flash.o: ..\Lib\Inc\stm32f4xx_hal_adc.h
+.\objects\stm32f4xx_hal_flash.o: ..\Lib\Inc\stm32f4xx_hal_adc_ex.h
 .\objects\stm32f4xx_hal_flash.o: ..\Lib\Inc\stm32f4xx_hal_eth.h
 .\objects\stm32f4xx_hal_flash.o: ..\Lib\Inc\stm32f4xx_hal_flash.h
 .\objects\stm32f4xx_hal_flash.o: ..\Lib\Inc\stm32f4xx_hal_flash_ex.h
