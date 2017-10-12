@@ -194,11 +194,11 @@ The STM32F4xx allows computing and verifying the IP, UDP, TCP and ICMP checksums
 
 #define LWIP_HTTPD_SSI 1
 #define LWIP_HTTPD_CGI 1
-//#define LWIP_DEBUG
+#define LWIP_DEBUG
 #define LWIP_DBG_TYPES_ON LWIP_DBG_ON|LWIP_DBG_TRACE|LWIP_DBG_STATE|LWIP_DBG_FRESH
 
 //#define ETHARP_DEBUG                    LWIP_DBG_ON     
-//#define NETIF_DEBUG                     LWIP_DBG_ON     
+#define NETIF_DEBUG                     LWIP_DBG_ON     
 //#define PBUF_DEBUG                      LWIP_DBG_ON
 //#define API_LIB_DEBUG                   LWIP_DBG_ON
 //#define API_MSG_DEBUG                   LWIP_DBG_ON

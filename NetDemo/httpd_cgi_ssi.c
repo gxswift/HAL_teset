@@ -8,19 +8,19 @@
 
 #include "stm32f4xx_hal.h"
 
-#define NUM_CONFIG_CGI_URIS	1 //CGI的URI数量
+#define NUM_CONFIG_CGI_URIS	3 //CGI的URI数量
 #define NUM_CONFIG_SSI_TAGS	2  //SSI的TAG数量
 
 //控制LED和BEEP的CGI handler
 const char* Login_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[]);
-//const char* Set_CGI_Handler(int iIndex,int iNumParams,char *pcParam[],char *pcValue[]);
-//const char* Ctrl_CGI_Handler(int iIndex,int iNumParams,char *pcParam[],char *pcValue[]);
+const char* Set_CGI_Handler(int iIndex,int iNumParams,char *pcParam[],char *pcValue[]);
+const char* Ctrl_CGI_Handler(int iIndex,int iNumParams,char *pcParam[],char *pcValue[]);
 
 static const tCGI ppcURLs[]= //cgi程序
 {
 	{"/login.cgi",Login_CGI_Handler},
-//	{"/set.cgi",Set_CGI_Handler},
-//	{"/ctrl.cgi",Ctrl_CGI_Handler}
+	{"/set.cgi",Set_CGI_Handler},
+	{"/ctrl.cgi",Ctrl_CGI_Handler}
 };
 static const char *ppcTAGs[]=  //SSI的Tag
 {
@@ -77,7 +77,6 @@ static int FindCGIParameter(const char *pcToFind,char *pcParam[],int iNumParams)
 }
 
 const char *Login_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[])
-
 {
 
   uint8_t i=0; //???????????????i???
@@ -110,6 +109,44 @@ const char *Login_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char 
       return "/index.html";      //????????????????????
 }
 
+extern uint8_t Led_Flag;
+extern uint16_t Led_Time;
+const char* Ctrl_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[])
+{
+	uint8_t i=0;  
+	iIndex = FindCGIParameter("sex",pcParam,iNumParams); 
+	if (iIndex != -1)
+	{
+		for (i=0; i<iNumParams; i++) //??CGI??
+		{
+		  if (strcmp(pcParam[i] , "sex")==0)  //????"led" ????LED1??
+		  {
+			if(strcmp(pcValue[i], "male") ==0)  //??LED1??
+				Led_Flag=1; //??LED1
+			else if(strcmp(pcValue[i],"female") == 0)
+				Led_Flag=0; //??LED1
+		  }
+		}
+	 }
+	return "/control.html";   							//LED1?,BEEP?					
+}
+
+const char* Set_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[])
+{
+	uint8_t i=0;  
+	iIndex = FindCGIParameter("rate",pcParam,iNumParams); 
+	if (iIndex != -1)
+	{
+		for (i=0; i<iNumParams; i++) //??CGI??
+		{
+		  if (strcmp(pcParam[i] , "rate")==0)  //????"led" ????LED1??
+		  {
+				Led_Time = atoi(pcValue[i])*100;
+		  }
+		}
+	 }
+	return "/sys.html";   							//LED1?,BEEP?					
+}
 //CGI句柄初始化
 void httpd_cgi_init(void)
 { 

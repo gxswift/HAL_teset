@@ -223,15 +223,31 @@ static void vTaskTaskUserIF(void *pvParameters)
 }
 uint32_t reg[32];
 char ch[30];
+uint8_t Led_Flag;
+uint16_t Led_Time;
 static void vTaskLed(void *pvParameters)
 {
+	Led_Time = 500;
+	Led_Flag = 1;
+	
 	while(1)
 	{
+		if (Led_Flag==1)
+		{
 		HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);
 		HAL_GPIO_TogglePin(GPIOG,GPIO_PIN_7);
-		vTaskDelay(500);
-		HAL_GPIO_TogglePin(GPIOG,GPIO_PIN_7);
-		vTaskDelay(500);
+		}
+		else if (Led_Flag == 2)
+		{
+			HAL_GPIO_WritePin(GPIOD,GPIO_PIN_12,0);
+			HAL_GPIO_WritePin(GPIOG,GPIO_PIN_7,0);
+		}
+		else
+		{
+			HAL_GPIO_WritePin(GPIOD,GPIO_PIN_12,1);
+			HAL_GPIO_WritePin(GPIOG,GPIO_PIN_7,1);
+		}
+				vTaskDelay(Led_Time);
 
 	}
 }
@@ -339,7 +355,7 @@ int main(void)
 	httpd_cgi_init();
 	httpd_init();
 // http_server_netconn_init();
- my_smtp_test();
+// my_smtp_test();
 	vTaskStartScheduler();
 	
   /* Infinite loop */
