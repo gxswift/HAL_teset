@@ -1203,6 +1203,11 @@
               <FileType>1</FileType>
               <FilePath>..\NetDemo\httpd_cgi_ssi.c</FilePath>
             </File>
+            <File>
+              <FileName>tcpecho.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\NetDemo\tcpecho.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

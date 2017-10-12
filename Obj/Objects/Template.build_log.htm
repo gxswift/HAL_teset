@@ -26,11 +26,16 @@ Project File Date:  10/09/2017
 
 <h2>Output:</h2>
 Build target 'Template'
-compiling httpd_cgi_ssi.c...
+compiling tcpecho.c...
+..\NetDemo\tcpecho.c(58): warning:  #111-D: statement is unreachable
+    LWIP_ERROR("tcpecho: invalid conn", (conn != NULL), return;);
+..\NetDemo\tcpecho.c(82): warning:  #223-D: function "strcmp" declared implicitly
+                                        if(strcmp(data , "on")==0) 
+..\NetDemo\tcpecho.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=90508 RO-data=13016 RW-data=452 ZI-data=138252  
+Program Size: Code=101032 RO-data=13016 RW-data=456 ZI-data=138256  
 FromELF: creating hex file...
-".\Objects\Template.axf" - 0 Error(s), 0 Warning(s).
+".\Objects\Template.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\practise\F429Test\Hal_test\Obj\RTE

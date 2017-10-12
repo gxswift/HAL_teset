@@ -50,6 +50,7 @@
 #include "httpserver-netconn.h"
 #include "smtp.h"
 #include "lwip/apps/httpd.h"
+#include "tcpecho.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -358,6 +359,7 @@ int main(void)
 	httpd_ssi_init();
 	httpd_cgi_init();
 	httpd_init();
+	tcpecho_init();
 // http_server_netconn_init();
 // my_smtp_test();
 	vTaskStartScheduler();

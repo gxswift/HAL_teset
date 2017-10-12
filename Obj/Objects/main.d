@@ -103,3 +103,4 @@
 .\objects\main.o: ..\NetDemo\smtp.h
 .\objects\main.o: ..\lwip\src\include\lwip/apps/httpd.h
 .\objects\main.o: ..\lwip\src\include\lwip/apps/httpd_opts.h
+.\objects\main.o: ..\NetDemo\tcpecho.h

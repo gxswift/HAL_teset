@@ -1,5 +1,5 @@
 Dependencies for Project 'Template', Target 'Template': (DO NOT MODIFY !)
-F (..\User\Src\main.c)(0x59DF772D)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Core -I..\Lib\Inc -I..\User\Inc -I..\User -I..\FreeRTOS\include -I..\FreeRTOS\portable -I..\lwip\src\include -I..\lwip\system\OS -I..\lwip\system -I..\lwip\system\arch -I..\NetDemo -I..\lwip\src\apps\httpd -I..\lwip\src\include\lwip\apps --C99-I D:\practise\F429Test\Hal_test\Obj\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (..\User\Src\main.c)(0x59DF7E88)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Core -I..\Lib\Inc -I..\User\Inc -I..\User -I..\FreeRTOS\include -I..\FreeRTOS\portable -I..\lwip\src\include -I..\lwip\system\OS -I..\lwip\system -I..\lwip\system\arch -I..\NetDemo -I..\lwip\src\apps\httpd -I..\lwip\src\include\lwip\apps --C99-I D:\practise\F429Test\Hal_test\Obj\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (..\User\Inc\main.h)(0x5970D401)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
 I (..\Lib\Inc\stm32f4xx_hal.h)(0x596A2E27)
@@ -99,6 +99,7 @@ I (..\NetDemo\httpserver-netconn.h)(0x553799C6)
 I (..\NetDemo\smtp.h)(0x56D986E4)
 I (..\lwip\src\include\lwip/apps/httpd.h)(0x57A1338A)
 I (..\lwip\src\include\lwip/apps/httpd_opts.h)(0x58C5F05A)
+I (..\NetDemo\tcpecho.h)(0x537B3408)
 F (..\User\Src\stm32f4xx_hal_msp.c)(0x59B67DE9)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Core -I..\Lib\Inc -I..\User\Inc -I..\User -I..\FreeRTOS\include -I..\FreeRTOS\portable -I..\lwip\src\include -I..\lwip\system\OS -I..\lwip\system -I..\lwip\system\arch -I..\NetDemo -I..\lwip\src\apps\httpd -I..\lwip\src\include\lwip\apps --C99-I D:\practise\F429Test\Hal_test\Obj\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o .\objects\stm32f4xx_hal_msp.o --omf_browse .\objects\stm32f4xx_hal_msp.crf --depend .\objects\stm32f4xx_hal_msp.d)
 I (..\Lib\Inc\stm32f4xx_hal.h)(0x596A2E27)
 I (..\User\Inc\stm32f4xx_hal_conf.h)(0x59DF677B)
@@ -5001,7 +5002,7 @@ I (..\lwip\src\include\lwip/tcp.h)(0x58B3A9F4)
 I (..\lwip\src\include\lwip/icmp.h)(0x58C5F1FE)
 I (..\lwip\src\include\lwip/prot/icmp.h)(0x58B3A636)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5475F300)
-F (..\NetDemo\httpd_cgi_ssi.c)(0x59DF78A9)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Core -I..\Lib\Inc -I..\User\Inc -I..\User -I..\FreeRTOS\include -I..\FreeRTOS\portable -I..\lwip\src\include -I..\lwip\system\OS -I..\lwip\system -I..\lwip\system\arch -I..\NetDemo -I..\lwip\src\apps\httpd -I..\lwip\src\include\lwip\apps --C99-I D:\practise\F429Test\Hal_test\Obj\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o .\objects\httpd_cgi_ssi.o --omf_browse .\objects\httpd_cgi_ssi.crf --depend .\objects\httpd_cgi_ssi.d)
+F (..\NetDemo\httpd_cgi_ssi.c)(0x59DF796F)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Core -I..\Lib\Inc -I..\User\Inc -I..\User -I..\FreeRTOS\include -I..\FreeRTOS\portable -I..\lwip\src\include -I..\lwip\system\OS -I..\lwip\system -I..\lwip\system\arch -I..\NetDemo -I..\lwip\src\apps\httpd -I..\lwip\src\include\lwip\apps --C99-I D:\practise\F429Test\Hal_test\Obj\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o .\objects\httpd_cgi_ssi.o --omf_browse .\objects\httpd_cgi_ssi.crf --depend .\objects\httpd_cgi_ssi.d)
 I (..\lwip\src\include\lwip/debug.h)(0x58B3A636)
 I (..\lwip\src\include\lwip/arch.h)(0x58C5F224)
 I (..\lwip\system\arch/cc.h)(0x59BA7690)
@@ -5077,3 +5078,38 @@ I (..\Lib\Inc\stm32f4xx_hal_uart.h)(0x596A2E28)
 I (..\Lib\Inc\stm32f4xx_hal_pcd.h)(0x596A2E28)
 I (..\Lib\Inc\stm32f4xx_ll_usb.h)(0x596A2E28)
 I (..\Lib\Inc\stm32f4xx_hal_pcd_ex.h)(0x596A2E28)
+F (..\NetDemo\tcpecho.c)(0x59DF867A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\Core -I..\Lib\Inc -I..\User\Inc -I..\User -I..\FreeRTOS\include -I..\FreeRTOS\portable -I..\lwip\src\include -I..\lwip\system\OS -I..\lwip\system -I..\lwip\system\arch -I..\NetDemo -I..\lwip\src\apps\httpd -I..\lwip\src\include\lwip\apps --C99-I D:\practise\F429Test\Hal_test\Obj\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o .\objects\tcpecho.o --omf_browse .\objects\tcpecho.crf --depend .\objects\tcpecho.d)
+I (..\NetDemo\tcpecho.h)(0x537B3408)
+I (..\lwip\src\include\lwip/opt.h)(0x59B7FEB0)
+I (..\lwip\system\arch\lwipopts.h)(0x59DF5B11)
+I (..\lwip\src\include\lwip/debug.h)(0x58B3A636)
+I (..\lwip\src\include\lwip/arch.h)(0x58C5F224)
+I (..\lwip\system\arch/cc.h)(0x59BA7690)
+I (..\lwip\system\arch/cpu.h)(0x528C2E7E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5475F300)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x5475F2FA)
+I (C:\Keil_v5\ARM\ARMCC\include\limits.h)(0x5475F2FA)
+I (..\lwip\src\include\lwip/sys.h)(0x58B3A636)
+I (..\lwip\src\include\lwip/err.h)(0x58B3A636)
+I (..\lwip\system\arch/sys_arch.h)(0x597DEFBE)
+I (..\FreeRTOS\include\FreeRTOS.h)(0x573F3A16)
+I (..\User\Inc\FreeRTOSConfig.h)(0x59AFF5BB)
+I (..\FreeRTOS\include\projdefs.h)(0x573F3A16)
+I (..\FreeRTOS\include\portable.h)(0x573F3A16)
+I (..\FreeRTOS\include\deprecated_definitions.h)(0x573F3A16)
+I (..\FreeRTOS\portable\portmacro.h)(0x573F3A17)
+I (..\FreeRTOS\include\mpu_wrappers.h)(0x573F3A16)
+I (..\FreeRTOS\include\task.h)(0x57A0ACBF)
+I (..\FreeRTOS\include\list.h)(0x573F3A16)
+I (..\FreeRTOS\include\queue.h)(0x573F3A16)
+I (..\FreeRTOS\include\semphr.h)(0x573F3A16)
+I (..\lwip\src\include\lwip/api.h)(0x58C5F05A)
+I (..\lwip\src\include\lwip/netbuf.h)(0x57A1338A)
+I (..\lwip\src\include\lwip/pbuf.h)(0x58C5F05A)
+I (..\lwip\src\include\lwip/ip_addr.h)(0x58C5F598)
+I (..\lwip\src\include\lwip/def.h)(0x58B3A636)
+I (..\lwip\src\include\lwip/ip4_addr.h)(0x58C5F05A)
+I (..\lwip\src\include\lwip/ip6_addr.h)(0x58C5F598)
