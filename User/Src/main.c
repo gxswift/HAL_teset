@@ -51,6 +51,7 @@
 #include "smtp.h"
 #include "lwip/apps/httpd.h"
 #include "tcpecho.h"
+#include "udpecho.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -260,7 +261,8 @@ static void vTaskMsgPro(void *pvParameters)
 {
 	while(1)
 	{
-		vTaskDelay(300);
+		vTaskDelay(1000);
+
 	}
 }
 static void AppTaskCreate (void)
@@ -360,6 +362,7 @@ int main(void)
 	httpd_cgi_init();
 	httpd_init();
 	tcpecho_init();
+	udpecho_init();
 // http_server_netconn_init();
 // my_smtp_test();
 	vTaskStartScheduler();

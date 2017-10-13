@@ -73,7 +73,7 @@ tcpecho_thread(void *arg)
       char buff1[]="开\r\n";
 			char buff2[]="关\r\n";
 			char buff3[]="闪\r\n";
-			char buff4[]="on:开\r\noff:关\r\nhelp:帮助\r\n";
+			char buff4[]="\r\non:开\r\noff:关\r\nflash:闪\r\nhelp:帮助\r\n";
       while ((err = netconn_recv(newconn, &buf)) == ERR_OK) {
         /*printf("Recved\n");*/
         do {

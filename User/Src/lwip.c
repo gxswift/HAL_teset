@@ -308,6 +308,9 @@ void User_notification(struct netif *netif)
   * @param  argument: network interface
   * @retval None
   */
+uint32_t IPaddress;
+uint32_t Maskaddress;
+uint32_t GWaddress;
 void DHCP_thread(void *pvParameters)
 {
   struct netif *netif = (struct netif *) &gnetif;
@@ -334,6 +337,9 @@ void DHCP_thread(void *pvParameters)
       {                
         if (dhcp_supplied_address(netif)) 
         {
+					IPaddress = netif->ip_addr.addr;
+					Maskaddress = netif->netmask.addr;
+					GWaddress = netif->gw.addr;
           DHCP_state = DHCP_ADDRESS_ASSIGNED;	
         }
         else
