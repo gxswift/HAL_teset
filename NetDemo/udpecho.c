@@ -89,10 +89,23 @@ udpecho_thread()
   char buff[100];
   err_t err;
   uint8_t i;
-
+//	uint32_t BroadCast_Address;
   ip4_addr_t addr;  
-  IP4_ADDR(&addr, 192,168,1,255); 
+	vTaskDelay(5000);	
+//	BroadCast_Address = (IPaddress&Maskaddress)|(~Maskaddress);
+
+  IP4_ADDR(&addr, 255,255,255,255); 
+	
+//	IP4_ADDR(&addr, BroadCast_Address&0xff,
+//			BroadCast_Address>>8&0xff,
+//			BroadCast_Address>>16&0xff,
+//			BroadCast_Address>>24); 
+//	printf("Broad_Address:%d.%d.%d.%d\r\n",BroadCast_Address&0xff,
+//			BroadCast_Address>>8&0xff,
+//			BroadCast_Address>>16&0xff,
+//			BroadCast_Address>>24);
 	i=10;
+
   conn = netconn_new(NETCONN_UDP);
   netconn_bind(conn, IP_ADDR_ANY, 6000);
   netconn_connect(conn,&addr,6000);

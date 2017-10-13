@@ -26,7 +26,20 @@ Project File Date:  10/13/2017
 
 <h2>Output:</h2>
 Build target 'Template'
-".\Objects\Template.axf" - 0 Error(s), 0 Warning(s).
+compiling udpecho.c...
+..\NetDemo\udpecho.c(132): warning:  #223-D: function "strlen" declared implicitly
+                        netbuf_alloc(buf,strlen((char *)buff));
+..\NetDemo\udpecho.c(133): warning:  #223-D: function "memcpy" declared implicitly
+                        memcpy(buf->p->payload,(void*)buff,strlen((char*)buff));        
+..\NetDemo\udpecho.c(90): warning:  #550-D: variable "err" was set but never used
+    err_t err;
+..\NetDemo\udpecho.c(145): warning:  #167-D: argument of type "void (*)()" is incompatible with parameter of type "lwip_thread_fn"
+    sys_thread_new("udpecho_thread", udpecho_thread, NULL, DEFAULT_THREAD_STACKSIZE, DEFAULT_THREAD_PRIO);
+..\NetDemo\udpecho.c: 4 warnings, 0 errors
+linking...
+Program Size: Code=103468 RO-data=13092 RW-data=468 ZI-data=138252  
+FromELF: creating hex file...
+".\Objects\Template.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   E:\Project\Practise\HAL_test\Obj\RTE
