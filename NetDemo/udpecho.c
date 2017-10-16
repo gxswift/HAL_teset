@@ -82,7 +82,7 @@ extern uint32_t IPaddress;
 extern uint32_t Maskaddress;
 extern uint32_t GWaddress;
 static void
-udpecho_thread()
+udpebroadcast_thread()
 {
   struct netconn *conn;
   struct netbuf *buf;
@@ -108,7 +108,7 @@ udpecho_thread()
 
   conn = netconn_new(NETCONN_UDP);
   netconn_bind(conn, IP_ADDR_ANY, 6000);
-  netconn_connect(conn,&addr,6000);
+ netconn_connect(conn,&addr,6000);
 	while(1)
 	{
 		if (i)
@@ -127,12 +127,88 @@ udpecho_thread()
 			GWaddress&0xff,
 			GWaddress>>8&0xff,
 			GWaddress>>16&0xff,
-			GWaddress>>24);			
+			GWaddress>>24);
+			
 			buf = netbuf_new();
 			netbuf_alloc(buf,strlen((char *)buff));
 			memcpy(buf->p->payload,(void*)buff,strlen((char*)buff));	
 
 			err = netconn_send(conn, buf);
+			netbuf_delete(buf);
+		}
+		if (netconn_recv(conn, &buf)==ERR_OK)
+		{
+			memset(buff,0,sizeof(buff));
+			netbuf_copy(buf, buff, sizeof(buff));
+			printf("UDP6000接收:%s\r\n",buff);
+			if(strcmp(buff,"broadcast")==0)
+			i = 1;
+			netbuf_delete(buf);
+		}
+		vTaskDelay(2000);
+	}
+}
+extern uint8_t Led_Flag;
+extern uint16_t Led_Time;
+static void
+udpecho_thread()
+{
+  struct netconn *conn;
+  struct netbuf *buf;
+  char buff[100];
+  err_t err;
+  uint8_t i;
+  ip4_addr_t addr;  
+	vTaskDelay(5000);	
+
+  IP4_ADDR(&addr, 192,168,1,104); 
+	
+	i=1;
+
+  conn = netconn_new(NETCONN_UDP);
+  netconn_bind(conn, IP_ADDR_ANY, 2222);
+  netconn_connect(conn,&addr,2222);
+	while(1)
+	{
+		if (i)
+		{
+			i--;
+
+			sprintf(buff,"UDP 2222test\r\n");
+			
+			buf = netbuf_new();
+			netbuf_alloc(buf,strlen((char *)buff));
+			memcpy(buf->p->payload,(void*)buff,strlen((char*)buff));	
+
+			err = netconn_send(conn, buf);
+			netbuf_delete(buf);
+		}
+		if (netconn_recv(conn, &buf)==ERR_OK)
+		{
+			memset(buff,0,sizeof(buff));
+			netbuf_copy(buf, buff, sizeof(buff));
+			printf("UDP2222接收:%s\r\n",buff);
+			if(strcmp(buff,"broadcast")==0)
+			i = 1;
+			
+			if(strcmp(buff , "on")==0) 
+			{
+				Led_Flag = 0;
+			}
+			else if(strcmp(buff , "off")==0)
+			{
+				Led_Flag = 2;
+			}
+			else if(strncmp(buff , "flash",5)==0)
+			{
+				Led_Flag = 1;
+
+				if(strncmp(buff,"flash=",6)==0)
+					if(atoi((char*)buff+6))
+					{
+					Led_Time = (uint16_t)atoi((char*)buff+6)*100;
+					}
+			}
 			netbuf_delete(buf);
 		}
 		vTaskDelay(2000);
@@ -144,7 +220,7 @@ udpecho_init(void)
 {
   sys_thread_new("udpecho_thread", udpecho_thread, NULL, DEFAULT_THREAD_STACKSIZE, DEFAULT_THREAD_PRIO);
 
-
+  sys_thread_new("udpebroadcast_thread", udpebroadcast_thread, NULL, DEFAULT_THREAD_STACKSIZE, DEFAULT_THREAD_PRIO);
 }
 
 #endif /* LWIP_NETCONN */

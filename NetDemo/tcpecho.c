@@ -39,6 +39,7 @@
 #include "lwip/api.h"
 /*-----------------------------------------------------------------------------------*/
 extern uint8_t Led_Flag;
+extern uint16_t Led_Time;
 static void 
 tcpecho_thread(void *arg)
 {
@@ -72,8 +73,8 @@ tcpecho_thread(void *arg)
       u16_t len;
       char buff1[]="开\r\n";
 			char buff2[]="关\r\n";
-			char buff3[]="闪\r\n";
-			char buff4[]="\r\non:开\r\noff:关\r\nflash:闪\r\nhelp:帮助\r\n";
+			char buff3[20]="闪\r\n";
+			char buff4[]="\r\non:开\r\noff:关\r\nflash:闪\r\nflash=**:闪烁频率(100ms)\r\nhelp:帮助\r\n";
       while ((err = netconn_recv(newconn, &buf)) == ERR_OK) {
         /*printf("Recved\n");*/
         do {
@@ -89,9 +90,16 @@ tcpecho_thread(void *arg)
 						Led_Flag = 2;
 						err = netconn_write(newconn, buff2, sizeof(buff2), NETCONN_COPY);
 					}
-					else if(strcmp(data , "flash")==0)
+					else if(strncmp(data , "flash",5)==0)
 					{
 						Led_Flag = 1;
+
+						if(strncmp(data,"flash=",6)==0)
+							if(atoi((char*)data+6))
+							{
+							Led_Time = (uint16_t)atoi((char*)data+6)*100;
+							}
+							sprintf(buff3,"闪烁频率:%dms\r\n",Led_Time);
 						err = netconn_write(newconn, buff3, sizeof(buff3), NETCONN_COPY);
 					}
 					else if(strcmp(data , "help")==0)
