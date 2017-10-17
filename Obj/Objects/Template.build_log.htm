@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¦ÌVision V5.14.0.0
 Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: gx gx, gx, LIC=LJWFW-QLI0U-59PGZ-J6Q0Q-ZYPSD-QLVKS
+License Information: eti eti, eti, LIC=KIVRA-1FENA-8YZVV-P3LGW-2CWLU-BCJ4K
  
 Tool Versions:
 Toolchain:       MDK-ARM Professional  Version: 5.14.0.0
@@ -21,7 +21,7 @@ Target DLL:      CMSIS_AGDI.dll V1.21.0.0
 Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
-D:\practise\F429Test\Hal_test\Obj\Template.uvprojx
+E:\Project\Practise\HAL_test\Obj\Template.uvprojx
 Project File Date:  10/13/2017
 
 <h2>Output:</h2>
@@ -31,38 +31,36 @@ compiling udpecho.c...
                         netbuf_alloc(buf,strlen((char *)buff));
 ..\NetDemo\udpecho.c(134): warning:  #223-D: function "memcpy" declared implicitly
                         memcpy(buf->p->payload,(void*)buff,strlen((char*)buff));        
-..\NetDemo\udpecho.c(141): warning:  #223-D: function "memset" declared implicitly
-                        memset(buff,0,sizeof(buff));
-..\NetDemo\udpecho.c(144): warning:  #223-D: function "strcmp" declared implicitly
-                        if(strcmp(buff,"broadcast")==0)
 ..\NetDemo\udpecho.c(90): warning:  #550-D: variable "err" was set but never used
     err_t err;
-..\NetDemo\udpecho.c(180): warning:  #223-D: function "strlen" declared implicitly
-                        netbuf_alloc(buf,strlen((char *)buff));
-..\NetDemo\udpecho.c(181): warning:  #223-D: function "memcpy" declared implicitly
-                        memcpy(buf->p->payload,(void*)buff,strlen((char*)buff));        
-..\NetDemo\udpecho.c(188): warning:  #223-D: function "memset" declared implicitly
+..\NetDemo\udpecho.c(182): warning:  #223-D: function "memset" declared implicitly
                         memset(buff,0,sizeof(buff));
-..\NetDemo\udpecho.c(191): warning:  #223-D: function "strcmp" declared implicitly
+..\NetDemo\udpecho.c(184): warning:  #223-D: function "strcmp" declared implicitly
                         if(strcmp(buff,"broadcast")==0)
-..\NetDemo\udpecho.c(194): warning:  #223-D: function "strcmp" declared implicitly
+..\NetDemo\udpecho.c(187): warning:  #223-D: function "strcmp" declared implicitly
                         if(strcmp(buff , "on")==0) 
-..\NetDemo\udpecho.c(202): warning:  #223-D: function "strncmp" declared implicitly
+..\NetDemo\udpecho.c(195): warning:  #223-D: function "strncmp" declared implicitly
                         else if(strncmp(buff , "flash",5)==0)
-..\NetDemo\udpecho.c(159): warning:  #550-D: variable "err" was set but never used
+..\NetDemo\udpecho.c(207): warning:  #223-D: function "strlen" declared implicitly
+                        netbuf_alloc(buf,strlen((char *)buff2));
+..\NetDemo\udpecho.c(208): warning:  #223-D: function "memcpy" declared implicitly
+                        memcpy(buf->p->payload,(void*)buff2,strlen((char*)buff2));      
+..\NetDemo\udpecho.c(151): warning:  #550-D: variable "err" was set but never used
     err_t err;
-..\NetDemo\udpecho.c(221): warning:  #167-D: argument of type "void (*)()" is incompatible with parameter of type "lwip_thread_fn"
+..\NetDemo\udpecho.c(152): warning:  #550-D: variable "i" was set but never used
+    uint8_t i;
+..\NetDemo\udpecho.c(220): warning:  #167-D: argument of type "void (*)()" is incompatible with parameter of type "lwip_thread_fn"
     sys_thread_new("udpecho_thread", udpecho_thread, NULL, DEFAULT_THREAD_STACKSIZE, DEFAULT_THREAD_PRIO);
-..\NetDemo\udpecho.c(223): warning:  #167-D: argument of type "void (*)()" is incompatible with parameter of type "lwip_thread_fn"
+..\NetDemo\udpecho.c(222): warning:  #167-D: argument of type "void (*)()" is incompatible with parameter of type "lwip_thread_fn"
     sys_thread_new("udpebroadcast_thread", udpebroadcast_thread, NULL, DEFAULT_THREAD_STACKSIZE, DEFAULT_THREAD_PRIO);
-..\NetDemo\udpecho.c: 14 warnings, 0 errors
+..\NetDemo\udpecho.c: 13 warnings, 0 errors
 linking...
-Program Size: Code=104048 RO-data=13180 RW-data=468 ZI-data=138252  
+Program Size: Code=103912 RO-data=13180 RW-data=468 ZI-data=138252  
 FromELF: creating hex file...
-".\Objects\Template.axf" - 0 Error(s), 14 Warning(s).
+".\Objects\Template.axf" - 0 Error(s), 13 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  D:\practise\F429Test\Hal_test\Obj\RTE
+  E:\Project\Practise\HAL_test\Obj\RTE
   C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0
 
 <h2>Collection of Component Files used:</h2>

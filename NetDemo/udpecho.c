@@ -136,15 +136,6 @@ udpebroadcast_thread()
 			err = netconn_send(conn, buf);
 			netbuf_delete(buf);
 		}
-		if (netconn_recv(conn, &buf)==ERR_OK)
-		{
-			memset(buff,0,sizeof(buff));
-			netbuf_copy(buf, buff, sizeof(buff));
-			printf("UDP6000接收:%s\r\n",buff);
-			if(strcmp(buff,"broadcast")==0)
-			i = 1;
-			netbuf_delete(buf);
-		}
 		vTaskDelay(2000);
 	}
 }
@@ -156,6 +147,7 @@ udpecho_thread()
   struct netconn *conn;
   struct netbuf *buf;
   char buff[100];
+	char buff2[100];
   err_t err;
   uint8_t i;
   ip4_addr_t addr;  
@@ -167,10 +159,11 @@ udpecho_thread()
 
   conn = netconn_new(NETCONN_UDP);
   netconn_bind(conn, IP_ADDR_ANY, 2222);
-  netconn_connect(conn,&addr,2222);
+//  netconn_connect(conn,&addr,2222);
+	//不需要连接，可接收一切，包括广播，若连接，则只针对一个IP,netbuf包含地址
 	while(1)
 	{
-		if (i)
+/*		if (i)
 		{
 			i--;
 
@@ -179,15 +172,15 @@ udpecho_thread()
 			buf = netbuf_new();
 			netbuf_alloc(buf,strlen((char *)buff));
 			memcpy(buf->p->payload,(void*)buff,strlen((char*)buff));	
-
+			netconn_connect(conn,&addr,2222);
 			err = netconn_send(conn, buf);
 			netbuf_delete(buf);
-		}
+		}*/
 		if (netconn_recv(conn, &buf)==ERR_OK)
 		{
+
 			memset(buff,0,sizeof(buff));
 			netbuf_copy(buf, buff, sizeof(buff));
-			printf("UDP2222接收:%s\r\n",buff);
 			if(strcmp(buff,"broadcast")==0)
 			i = 1;
 			
@@ -209,6 +202,12 @@ udpecho_thread()
 					Led_Time = (uint16_t)atoi((char*)buff+6)*100;
 					}
 			}
+			printf("UDP:2222接收:%s\r\n",buff);
+			sprintf(buff2,"UDP:2222接收:%s\r\n",buff);
+			netbuf_alloc(buf,strlen((char *)buff2));
+			memcpy(buf->p->payload,(void*)buff2,strlen((char*)buff2));	
+			err = netconn_send(conn, buf);	
+			
 			netbuf_delete(buf);
 		}
 		vTaskDelay(2000);
