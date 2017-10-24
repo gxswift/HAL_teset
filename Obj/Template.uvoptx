@@ -194,6 +194,11 @@
           <WinNumber>1</WinNumber>
           <ItemText>uwTick</ItemText>
         </Ww>
+        <Ww>
+          <count>1</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>synchronized_local_time</ItemText>
+        </Ww>
       </WatchWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
@@ -2234,19 +2239,6 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\NetDemo\smtp.c</PathWithFileName>
-      <FilenameWithoutPath>smtp.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>7</GroupNumber>
-      <FileNumber>151</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
       <PathWithFileName>..\lwip\src\apps\httpd\fs.c</PathWithFileName>
       <FilenameWithoutPath>fs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
@@ -2254,7 +2246,7 @@
     </File>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>152</FileNumber>
+      <FileNumber>151</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -2267,7 +2259,7 @@
     </File>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>153</FileNumber>
+      <FileNumber>152</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -2280,7 +2272,7 @@
     </File>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>154</FileNumber>
+      <FileNumber>153</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -2293,7 +2285,7 @@
     </File>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>155</FileNumber>
+      <FileNumber>154</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -2301,6 +2293,32 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\NetDemo\udpecho.c</PathWithFileName>
       <FilenameWithoutPath>udpecho.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>7</GroupNumber>
+      <FileNumber>155</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\NetDemo\smtp.c</PathWithFileName>
+      <FilenameWithoutPath>smtp.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>7</GroupNumber>
+      <FileNumber>156</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\NetDemo\ntp_client.c</PathWithFileName>
+      <FilenameWithoutPath>ntp_client.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

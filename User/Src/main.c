@@ -52,6 +52,7 @@
 #include "lwip/apps/httpd.h"
 #include "tcpecho.h"
 #include "udpecho.h"
+#include "ntp_client.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -363,6 +364,7 @@ int main(void)
 	httpd_init();
 	tcpecho_init();
 	udpecho_init();
+	ntp_client_init();
 // http_server_netconn_init();
 // my_smtp_test();
 	vTaskStartScheduler();

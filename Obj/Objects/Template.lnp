@@ -146,12 +146,13 @@
 ".\objects\sys_arch.o"
 ".\objects\ethernetif.o"
 ".\objects\httpserver-netconn.o"
-".\objects\smtp.o"
 ".\objects\fs.o"
 ".\objects\httpd.o"
 ".\objects\httpd_cgi_ssi.o"
 ".\objects\tcpecho.o"
 ".\objects\udpecho.o"
+".\objects\smtp.o"
+".\objects\ntp_client.o"
 --library_type=microlib --strict --scatter ".\Objects\Template.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

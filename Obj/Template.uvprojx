@@ -1184,11 +1184,6 @@
               <FilePath>..\NetDemo\httpserver-netconn.c</FilePath>
             </File>
             <File>
-              <FileName>smtp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\NetDemo\smtp.c</FilePath>
-            </File>
-            <File>
               <FileName>fs.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\lwip\src\apps\httpd\fs.c</FilePath>
@@ -1212,6 +1207,16 @@
               <FileName>udpecho.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\NetDemo\udpecho.c</FilePath>
+            </File>
+            <File>
+              <FileName>smtp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\NetDemo\smtp.c</FilePath>
+            </File>
+            <File>
+              <FileName>ntp_client.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\NetDemo\ntp_client.c</FilePath>
             </File>
           </Files>
         </Group>

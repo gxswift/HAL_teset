@@ -105,3 +105,5 @@
 .\objects\main.o: ..\lwip\src\include\lwip/apps/httpd_opts.h
 .\objects\main.o: ..\NetDemo\tcpecho.h
 .\objects\main.o: ..\NetDemo\udpecho.h
+.\objects\main.o: ..\NetDemo\ntp_client.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
