@@ -9,7 +9,7 @@ char * ntp_server_list[] = {"1.cn.pool.ntp.org",
                             NULL
                             };
 ip_addr_t   ntp_server_addr;
-//struct tm * synchronized_local_time; 
+struct tm synchronized_local_time; 
 uint32_t Org_Timestamp; // Time at the client when the request departed for the server
 uint32_t Receive_Timestamp; //Time at the server when the request arrived from the client
 uint32_t Transmit_Timestamp; //Time at the server when the response left for the client
@@ -45,7 +45,6 @@ static void ntp_process(uint32_t timestamp)
 {
   uint32_t local_ntp_timestamp;
 	struct tm *tblock;	
-
   //minus the difference value of 1900 epoch and 1970 epoch
   local_ntp_timestamp = timestamp - DIFF_SEC_1900_1970;
   
@@ -53,12 +52,19 @@ static void ntp_process(uint32_t timestamp)
   local_ntp_timestamp += SEC_TIME_ZONE;
   
   //conver to human-readable format
- // synchronized_local_time = gmtime(&local_ntp_timestamp);  
-  
+	
 	tblock = localtime(&local_ntp_timestamp);
 	printf("Local time is: %s\n",asctime(tblock));
+	printf("%d-%d-%d\t%d:%d:%d\t%d\r\n",
+	1900+tblock->tm_year,
+		1+tblock->tm_mon,
+		tblock->tm_mday,
+		tblock->tm_hour,
+		tblock->tm_min,
+		tblock->tm_sec,
+		tblock->tm_wday);
 }
-
+//连接几次后任务卡死,netconn_bind??
 static void ntp_request(void)
 {
   struct netconn * conn= NULL;
@@ -162,7 +168,7 @@ static void ntp_thread(void *arg)
   {
     /*#-send ntp request ##############################*/
     ntp_request();
-	
+
     /*#-update local time #############################*/
 //   printf("RTC time before update\n");
 //    RTC_CalendarShow();

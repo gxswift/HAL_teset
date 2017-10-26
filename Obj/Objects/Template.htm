@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Template.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Template.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Tue Oct 24 22:37:17 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Oct 26 23:26:56 2017
 <BR><P>
 <H3>Maximum Stack Usage =        744 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -6682,7 +6682,7 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> tcpecho.o(i.tcpecho_init)
 </UL>
-<P><STRONG><a name="[96]"></a>udpebroadcast_thread</STRONG> (Thumb, 234 bytes, Stack size 144 bytes, udpecho.o(i.udpebroadcast_thread))
+<P><STRONG><a name="[96]"></a>udpebroadcast_thread</STRONG> (Thumb, 248 bytes, Stack size 144 bytes, udpecho.o(i.udpebroadcast_thread))
 <BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = udpebroadcast_thread &rArr; netbuf_alloc &rArr; pbuf_alloc &rArr; pbuf_free &rArr; mem_free &rArr; sys_arch_sem_wait &rArr; xQueueGenericReceive &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
 <BR>[Calls]<UL><LI><a href="#[229]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;netbuf_new
@@ -6699,7 +6699,7 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> udpecho.o(i.udpecho_init)
 </UL>
-<P><STRONG><a name="[95]"></a>udpecho_thread</STRONG> (Thumb, 272 bytes, Stack size 208 bytes, udpecho.o(i.udpecho_thread))
+<P><STRONG><a name="[95]"></a>udpecho_thread</STRONG> (Thumb, 290 bytes, Stack size 208 bytes, udpecho.o(i.udpecho_thread))
 <BR><BR>[Stack]<UL><LI>Max Depth = 472<LI>Call Chain = udpecho_thread &rArr; netconn_recv &rArr; netconn_recv_data &rArr; netconn_close_shutdown &rArr; netconn_apimsg &rArr; tcpip_send_msg_wait_sem &rArr; sys_arch_sem_wait &rArr; xQueueGenericReceive &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
 <BR>[Calls]<UL><LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pbuf_copy_partial
@@ -6721,8 +6721,8 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> udpecho.o(i.udpecho_init)
 </UL>
-<P><STRONG><a name="[245]"></a>ntp_process</STRONG> (Thumb, 44 bytes, Stack size 24 bytes, ntp_client.o(i.ntp_process))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = ntp_process &rArr; asctime
+<P><STRONG><a name="[245]"></a>ntp_process</STRONG> (Thumb, 82 bytes, Stack size 40 bytes, ntp_client.o(i.ntp_process))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = ntp_process &rArr; asctime
 </UL>
 <BR>[Calls]<UL><LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[247]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;asctime

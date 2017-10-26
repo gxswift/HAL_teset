@@ -81,6 +81,7 @@
 extern uint32_t IPaddress;
 extern uint32_t Maskaddress;
 extern uint32_t GWaddress;
+static uint8_t cnt;
 static void
 udpebroadcast_thread()
 {
@@ -88,7 +89,6 @@ udpebroadcast_thread()
   struct netbuf *buf;
   char buff[100];
   err_t err;
-  uint8_t i;
 //	uint32_t BroadCast_Address;
   ip4_addr_t addr;  
 	vTaskDelay(5000);	
@@ -104,16 +104,16 @@ udpebroadcast_thread()
 //			BroadCast_Address>>8&0xff,
 //			BroadCast_Address>>16&0xff,
 //			BroadCast_Address>>24);
-	i=10;
+	cnt=10;
 
   conn = netconn_new(NETCONN_UDP);
   netconn_bind(conn, IP_ADDR_ANY, 6000);
  netconn_connect(conn,&addr,6000);
 	while(1)
 	{
-		if (i)
+		if (cnt)
 		{
-			i--;
+			cnt--;
 
 			sprintf(buff,"IP_Address:%d.%d.%d.%d\tMask_Address:%d.%d.%d.%d\tGW_Address:%d.%d.%d.%d\r\n",
 			IPaddress&0xff,
@@ -191,6 +191,10 @@ udpecho_thread()
 			else if(strcmp(buff , "off")==0)
 			{
 				Led_Flag = 2;
+			}
+			else if(strcmp(buff , "broad")==0)
+			{
+				cnt = 1;
 			}
 			else if(strncmp(buff , "flash",5)==0)
 			{
