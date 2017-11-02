@@ -54,8 +54,8 @@ static void ntp_process(uint32_t timestamp)
   //conver to human-readable format
 	
 	tblock = localtime(&local_ntp_timestamp);
-	printf("Local time is: %s\n",asctime(tblock));
-	printf("%d-%d-%d\t%d:%d:%d\t%d\r\n",
+	printf("Local time is: %s",asctime(tblock));
+	printf("%d-%d-%d\t%d:%d:%d\t%d\r\n\r\n",
 	1900+tblock->tm_year,
 		1+tblock->tm_mon,
 		tblock->tm_mday,
@@ -65,6 +65,97 @@ static void ntp_process(uint32_t timestamp)
 		tblock->tm_wday);
 }
 //连接几次后任务卡死,netconn_bind??
+#define Normal 1
+#if Normal //修改写法，分清层次
+static void ntp_request(void)
+{
+  struct netconn * conn= NULL;
+  struct netbuf * buf = NULL;
+  uint8_t   ntp_request_buf[NTP_PKT_LEN];
+  uint8_t*  ntp_receive_buf_p;
+  uint16_t buf_len;
+  err_t err;
+  //get ntp server address
+#if USE_DNS
+  if(netconn_gethostbyname(ntp_server_list[0],&ntp_server_addr)!=ERR_OK)
+  {
+    IP4_ADDR(&ntp_server_addr, NTP_Server_ADDR0, NTP_Server_ADDR1, NTP_Server_ADDR2, NTP_Server_ADDR3); 
+  }
+#else
+  IP4_ADDR(&ntp_server_addr, NTP_Server_ADDR0, NTP_Server_ADDR1, NTP_Server_ADDR2, NTP_Server_ADDR3);
+#endif
+  
+    //Create new netconn
+  conn = netconn_new(NETCONN_UDP);
+  
+  if(conn== NULL)
+  {
+		printf("netconn create error!\r\n");
+		netconn_delete(conn);
+		return;
+	}
+//	netconn_bind(conn, IP_ADDR_ANY, 123);//不需要绑定？？
+	buf = netbuf_new();
+	if(buf == NULL)
+	{
+		printf("buf new error!\r\n");
+		netconn_delete(conn);
+		netbuf_delete( buf );
+		return;
+	}
+	//initialize ntp packet to 0
+	memset(ntp_request_buf, 0, NTP_PKT_LEN);
+	//buid ntp packet
+	ntp_request_buf[0] = NTP_LI_NO_WARNING|NTP_VERSION|NTP_MODE_CLIENT;
+ 
+	err = netbuf_ref(buf,ntp_request_buf,NTP_PKT_LEN);
+	if(err !=ERR_OK)
+	{
+		printf("buffer error!\r\n");
+		netconn_delete(conn); 
+		 netbuf_delete( buf );
+		return;
+	}
+	//connect to NTP server
+	err = netconn_connect(conn,&ntp_server_addr,NTP_PORT);
+	if(err != ERR_OK)
+	{   
+		printf("connect error!\r\n");
+		netconn_delete(conn); 
+		netbuf_delete( buf ); 
+		return;
+	}							
+	//send ntp request to ntp server
+	if(netconn_send(conn,buf)!=ERR_OK)
+	{
+			printf("send error!\r\n");
+	}
+	netbuf_delete( buf );
+	//reveive ntp response
+	netconn_recv(conn,&buf);
+							
+	netbuf_data(buf,(void**)&ntp_receive_buf_p,&buf_len);
+	
+	//check ntp packet
+	if(buf_len==NTP_PKT_LEN)
+	{
+		if(((ntp_receive_buf_p[0]& NTP_MODE_MASK) == NTP_MODE_SERVER)|| ((ntp_receive_buf_p[0] & NTP_MODE_MASK) == NTP_MODE_BROADCAST))
+		{
+			// extract time from packet
+			Receive_Timestamp = ntp_receive_buf_p[RECEIVE_TS_OFFSET]<<24 | ntp_receive_buf_p[RECEIVE_TS_OFFSET+1]<<16|
+													ntp_receive_buf_p[RECEIVE_TS_OFFSET+2]<<8 |ntp_receive_buf_p[RECEIVE_TS_OFFSET+3];
+			Transmit_Timestamp = ntp_receive_buf_p[TRANSMIT_TS_OFFSET]<<24 | ntp_receive_buf_p[TRANSMIT_TS_OFFSET+1]<<16|
+													ntp_receive_buf_p[TRANSMIT_TS_OFFSET+2]<<8 |ntp_receive_buf_p[TRANSMIT_TS_OFFSET+3];
+			// start conver time format
+			printf("Transmit_Timestamp:%x\r\n",Transmit_Timestamp);
+			ntp_process(Transmit_Timestamp);
+		}
+	}
+	netconn_close(conn);
+	netconn_delete(conn); 
+	netbuf_delete( buf );
+}
+#else //参考原始
 static void ntp_request(void)
 {
   struct netconn * conn= NULL;
@@ -160,13 +251,14 @@ static void ntp_request(void)
 		netconn_delete(conn);
   //process
 }
-
+#endif 
 static void ntp_thread(void *arg)
 {
 	    vTaskDelay(10*1000);
   while(1)
   {
     /*#-send ntp request ##############################*/
+		printf("NTP test\r\n");
     ntp_request();
 
     /*#-update local time #############################*/
@@ -181,7 +273,7 @@ static void ntp_thread(void *arg)
     
     /*#-delay 1min ######################################*/
     vTaskDelay(10*1000);
-		printf("NTP test\r\n");
+
   }
   
 }

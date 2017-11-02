@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Template.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Template.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Oct 26 23:26:56 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Nov 02 11:08:05 2017
 <BR><P>
 <H3>Maximum Stack Usage =        744 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2786,7 +2786,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[22e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;netconn_apimsg
 <LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;udpecho_thread
+<BR>[Called By]<UL><LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ntp_request
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;udpecho_thread
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;udpebroadcast_thread
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tcpecho_thread
 </UL>
@@ -6521,8 +6522,8 @@ Local Symbols
 <LI><a href="#[1d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;http_send
 <LI><a href="#[1c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;http_close_conn
 </UL>
-<BR>[Address Reference Count : 2]<UL><LI> httpd.o(i.http_accept)
-<LI> httpd.o(i.http_close_or_abort_conn)
+<BR>[Address Reference Count : 2]<UL><LI> httpd.o(i.http_close_or_abort_conn)
+<LI> httpd.o(i.http_accept)
 </UL>
 <P><STRONG><a name="[73]"></a>http_recv</STRONG> (Thumb, 200 bytes, Stack size 32 bytes, httpd.o(i.http_recv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 680<LI>Call Chain = http_recv &rArr; http_send &rArr; http_check_eof &rArr; http_eof &rArr; http_close_conn &rArr; http_close_or_abort_conn &rArr; tcp_abort &rArr; tcp_abandon &rArr; tcp_pcb_remove &rArr; tcp_output &rArr; tcp_output_segment &rArr; ip4_output_if &rArr; ip4_output_if_src &rArr; ip4_frag &rArr; pbuf_alloc &rArr; pbuf_free &rArr; mem_free &rArr; sys_arch_sem_wait &rArr; xQueueGenericReceive &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
@@ -6731,7 +6732,7 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ntp_request
 </UL>
 
-<P><STRONG><a name="[248]"></a>ntp_request</STRONG> (Thumb, 356 bytes, Stack size 72 bytes, ntp_client.o(i.ntp_request))
+<P><STRONG><a name="[248]"></a>ntp_request</STRONG> (Thumb, 360 bytes, Stack size 72 bytes, ntp_client.o(i.ntp_request))
 <BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = ntp_request &rArr; netconn_recv &rArr; netconn_recv_data &rArr; netconn_close_shutdown &rArr; netconn_apimsg &rArr; tcpip_send_msg_wait_sem &rArr; sys_arch_sem_wait &rArr; xQueueGenericReceive &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
 <BR>[Calls]<UL><LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;netbuf_ref
@@ -6744,6 +6745,7 @@ Local Symbols
 <LI><a href="#[234]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;netconn_delete
 <LI><a href="#[233]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;netconn_connect
 <LI><a href="#[231]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;netconn_close
+<LI><a href="#[230]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;netconn_bind
 <LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[245]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ntp_process
