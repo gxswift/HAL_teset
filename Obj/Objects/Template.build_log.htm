@@ -21,15 +21,50 @@ Target DLL:      CMSIS_AGDI.dll V1.21.0.0
 Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
-E:\Project\Practise\HAL_test\Obj\Template.uvprojx
-Project File Date:  10/31/2017
+D:\²Î¿¼\HAL_test\Obj\Template.uvprojx
+Project File Date:  11/13/2017
 
 <h2>Output:</h2>
 Build target 'Template'
-".\Objects\Template.axf" - 0 Error(s), 0 Warning(s).
+compiling lwip.c...
+..\User\Src\lwip.c(86): warning:  #550-D: variable "Netif_Init_Flag" was set but never used
+        struct netif *Netif_Init_Flag;  
+..\User\Src\lwip.c: 1 warning, 0 errors
+compiling udpecho.c...
+..\NetDemo\udpecho.c(133): warning:  #223-D: function "strlen" declared implicitly
+                        netbuf_alloc(buf,strlen((char *)buff));
+..\NetDemo\udpecho.c(134): warning:  #223-D: function "memcpy" declared implicitly
+                        memcpy(buf->p->payload,(void*)buff,strlen((char*)buff));        
+..\NetDemo\udpecho.c(91): warning:  #550-D: variable "err" was set but never used
+    err_t err;
+..\NetDemo\udpecho.c(182): warning:  #223-D: function "memset" declared implicitly
+                        memset(buff,0,sizeof(buff));
+..\NetDemo\udpecho.c(184): warning:  #223-D: function "strcmp" declared implicitly
+                        if(strcmp(buff,"broadcast")==0)
+..\NetDemo\udpecho.c(187): warning:  #223-D: function "strcmp" declared implicitly
+                        if(strcmp(buff , "on")==0) 
+..\NetDemo\udpecho.c(199): warning:  #223-D: function "strncmp" declared implicitly
+                        else if(strncmp(buff , "flash",5)==0)
+..\NetDemo\udpecho.c(211): warning:  #223-D: function "strlen" declared implicitly
+                        netbuf_alloc(buf,strlen((char *)buff2));
+..\NetDemo\udpecho.c(212): warning:  #223-D: function "memcpy" declared implicitly
+                        memcpy(buf->p->payload,(void*)buff2,strlen((char*)buff2));      
+..\NetDemo\udpecho.c(151): warning:  #550-D: variable "err" was set but never used
+    err_t err;
+..\NetDemo\udpecho.c(152): warning:  #550-D: variable "i" was set but never used
+    uint8_t i;
+..\NetDemo\udpecho.c(224): warning:  #167-D: argument of type "void (*)()" is incompatible with parameter of type "lwip_thread_fn"
+    sys_thread_new("udpecho_thread", udpecho_thread, NULL, DEFAULT_THREAD_STACKSIZE, DEFAULT_THREAD_PRIO);
+..\NetDemo\udpecho.c(226): warning:  #167-D: argument of type "void (*)()" is incompatible with parameter of type "lwip_thread_fn"
+    sys_thread_new("udpebroadcast_thread", udpebroadcast_thread, NULL, DEFAULT_THREAD_STACKSIZE, DEFAULT_THREAD_PRIO);
+..\NetDemo\udpecho.c: 13 warnings, 0 errors
+linking...
+Program Size: Code=96712 RO-data=13112 RW-data=480 ZI-data=148512  
+FromELF: creating hex file...
+".\Objects\Template.axf" - 0 Error(s), 14 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  E:\Project\Practise\HAL_test\Obj\RTE
+  D:\²Î¿¼\HAL_test\Obj\RTE
   C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0
 
 <h2>Collection of Component Files used:</h2>

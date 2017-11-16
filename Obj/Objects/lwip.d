@@ -35,11 +35,6 @@
 .\objects\lwip.o: ..\lwip\src\include\lwip/prot/etharp.h
 .\objects\lwip.o: ..\lwip\src\include\netif/ethernet.h
 .\objects\lwip.o: ..\lwip\src\include\lwip/dhcp.h
-.\objects\lwip.o: ..\lwip\src\include\lwip/udp.h
-.\objects\lwip.o: ..\lwip\src\include\lwip/ip.h
-.\objects\lwip.o: ..\lwip\src\include\lwip/ip6.h
-.\objects\lwip.o: ..\lwip\src\include\lwip/prot/ip.h
-.\objects\lwip.o: ..\lwip\src\include\lwip/prot/udp.h
 .\objects\lwip.o: ..\lwip\src\include\lwip/timeouts.h
 .\objects\lwip.o: ..\lwip\src\include\lwip/sys.h
 .\objects\lwip.o: ..\lwip\system\arch/sys_arch.h

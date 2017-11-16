@@ -92,7 +92,7 @@ void MX_LWIP_Init(void)
   netmask.addr = 0;
   gw.addr = 0;
 #else
-	IP4_ADDR(&ipaddr,192,168,1,111);
+	IP4_ADDR(&ipaddr,192,168,1,152);
 	IP4_ADDR(&netmask,255,255,255,0);
 	IP4_ADDR(&gw,192,168,1,1);
 #endif
@@ -301,16 +301,16 @@ void User_notification(struct netif *netif)
 #endif  /* USE_DHCP */
   } 
 }
-
+uint32_t IPaddress;
+uint32_t Maskaddress;
+uint32_t GWaddress;
 #ifdef USE_DHCP
 /**
   * @brief  DHCP Process
   * @param  argument: network interface
   * @retval None
   */
-uint32_t IPaddress;
-uint32_t Maskaddress;
-uint32_t GWaddress;
+
 void DHCP_thread(void *pvParameters)
 {
   struct netif *netif = (struct netif *) &gnetif;

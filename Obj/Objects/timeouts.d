@@ -57,8 +57,6 @@
 .\objects\timeouts.o: ..\lwip\src\include\lwip/prot/ethernet.h
 .\objects\timeouts.o: ..\lwip\src\include\lwip/prot/etharp.h
 .\objects\timeouts.o: ..\lwip\src\include\lwip/dhcp.h
-.\objects\timeouts.o: ..\lwip\src\include\lwip/udp.h
-.\objects\timeouts.o: ..\lwip\src\include\lwip/prot/udp.h
 .\objects\timeouts.o: ..\lwip\src\include\lwip/autoip.h
 .\objects\timeouts.o: ..\lwip\src\include\lwip/igmp.h
 .\objects\timeouts.o: ..\lwip\src\include\lwip/dns.h
