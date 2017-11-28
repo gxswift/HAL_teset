@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¦ÌVision V5.14.0.0
 Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: eti eti, eti, LIC=KIVRA-1FENA-8YZVV-P3LGW-2CWLU-BCJ4K
+License Information: gx gx, gx, LIC=LJWFW-QLI0U-59PGZ-J6Q0Q-ZYPSD-QLVKS
  
 Tool Versions:
 Toolchain:       MDK-ARM Professional  Version: 5.14.0.0
@@ -21,50 +21,38 @@ Target DLL:      CMSIS_AGDI.dll V1.21.0.0
 Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
-D:\²Î¿¼\HAL_test\Obj\Template.uvprojx
-Project File Date:  11/13/2017
+D:\practise\F429Test\HAL_test\Obj\Template.uvprojx
+Project File Date:  11/28/2017
 
 <h2>Output:</h2>
 Build target 'Template'
-compiling lwip.c...
-..\User\Src\lwip.c(86): warning:  #550-D: variable "Netif_Init_Flag" was set but never used
-        struct netif *Netif_Init_Flag;  
-..\User\Src\lwip.c: 1 warning, 0 errors
-compiling udpecho.c...
-..\NetDemo\udpecho.c(133): warning:  #223-D: function "strlen" declared implicitly
-                        netbuf_alloc(buf,strlen((char *)buff));
-..\NetDemo\udpecho.c(134): warning:  #223-D: function "memcpy" declared implicitly
-                        memcpy(buf->p->payload,(void*)buff,strlen((char*)buff));        
-..\NetDemo\udpecho.c(91): warning:  #550-D: variable "err" was set but never used
-    err_t err;
-..\NetDemo\udpecho.c(182): warning:  #223-D: function "memset" declared implicitly
-                        memset(buff,0,sizeof(buff));
-..\NetDemo\udpecho.c(184): warning:  #223-D: function "strcmp" declared implicitly
-                        if(strcmp(buff,"broadcast")==0)
-..\NetDemo\udpecho.c(187): warning:  #223-D: function "strcmp" declared implicitly
-                        if(strcmp(buff , "on")==0) 
-..\NetDemo\udpecho.c(199): warning:  #223-D: function "strncmp" declared implicitly
-                        else if(strncmp(buff , "flash",5)==0)
-..\NetDemo\udpecho.c(211): warning:  #223-D: function "strlen" declared implicitly
-                        netbuf_alloc(buf,strlen((char *)buff2));
-..\NetDemo\udpecho.c(212): warning:  #223-D: function "memcpy" declared implicitly
-                        memcpy(buf->p->payload,(void*)buff2,strlen((char*)buff2));      
-..\NetDemo\udpecho.c(151): warning:  #550-D: variable "err" was set but never used
-    err_t err;
-..\NetDemo\udpecho.c(152): warning:  #550-D: variable "i" was set but never used
-    uint8_t i;
-..\NetDemo\udpecho.c(224): warning:  #167-D: argument of type "void (*)()" is incompatible with parameter of type "lwip_thread_fn"
-    sys_thread_new("udpecho_thread", udpecho_thread, NULL, DEFAULT_THREAD_STACKSIZE, DEFAULT_THREAD_PRIO);
-..\NetDemo\udpecho.c(226): warning:  #167-D: argument of type "void (*)()" is incompatible with parameter of type "lwip_thread_fn"
-    sys_thread_new("udpebroadcast_thread", udpebroadcast_thread, NULL, DEFAULT_THREAD_STACKSIZE, DEFAULT_THREAD_PRIO);
-..\NetDemo\udpecho.c: 13 warnings, 0 errors
+compiling main.c...
+..\NetDemo\ntp_client.h(42): warning:  #1-D: last line of file ends without a newline
+  #endif //#ifndef NTP_CLIENT_H
+..\User\Src\main.c(250): warning:  #188-D: enumerated type mixed with another type
+                        HAL_GPIO_WritePin(GPIOD,GPIO_PIN_12,0);
+..\User\Src\main.c(251): warning:  #188-D: enumerated type mixed with another type
+                        HAL_GPIO_WritePin(GPIOG,GPIO_PIN_7,0);
+..\User\Src\main.c(255): warning:  #188-D: enumerated type mixed with another type
+                        HAL_GPIO_WritePin(GPIOD,GPIO_PIN_12,1);
+..\User\Src\main.c(256): warning:  #188-D: enumerated type mixed with another type
+                        HAL_GPIO_WritePin(GPIOG,GPIO_PIN_7,1);
+..\User\Src\main.c(330): warning:  #188-D: enumerated type mixed with another type
+        HAL_GPIO_WritePin(GPIOE,GPIO_PIN_3,0);
+..\User\Src\main.c(332): warning:  #188-D: enumerated type mixed with another type
+        HAL_GPIO_WritePin(GPIOE,GPIO_PIN_3,1);
+..\User\Src\main.c(685): warning:  #177-D: variable "GPIO_Initure" was declared but never referenced
+      GPIO_InitTypeDef GPIO_Initure;
+..\User\Src\main.c(203): warning:  #177-D: function "my_smtp_test" was declared but never referenced
+   static void my_smtp_test(void)
+..\User\Src\main.c: 9 warnings, 0 errors
 linking...
-Program Size: Code=96712 RO-data=13112 RW-data=480 ZI-data=148512  
+Program Size: Code=104648 RO-data=13180 RW-data=476 ZI-data=148508  
 FromELF: creating hex file...
-".\Objects\Template.axf" - 0 Error(s), 14 Warning(s).
+".\Objects\Template.axf" - 0 Error(s), 9 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  D:\²Î¿¼\HAL_test\Obj\RTE
+  D:\practise\F429Test\HAL_test\Obj\RTE
   C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0
 
 <h2>Collection of Component Files used:</h2>

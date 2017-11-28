@@ -1218,6 +1218,11 @@
               <FileType>1</FileType>
               <FilePath>..\NetDemo\ntp_client.c</FilePath>
             </File>
+            <File>
+              <FileName>netbiosns.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lwip\src\apps\netbiosns\netbiosns.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

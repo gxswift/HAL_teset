@@ -88,6 +88,11 @@
 .\objects\main.o: ..\lwip\src\include\lwip/prot/etharp.h
 .\objects\main.o: ..\lwip\src\include\netif/ethernet.h
 .\objects\main.o: ..\lwip\src\include\lwip/dhcp.h
+.\objects\main.o: ..\lwip\src\include\lwip/udp.h
+.\objects\main.o: ..\lwip\src\include\lwip/ip.h
+.\objects\main.o: ..\lwip\src\include\lwip/ip6.h
+.\objects\main.o: ..\lwip\src\include\lwip/prot/ip.h
+.\objects\main.o: ..\lwip\src\include\lwip/prot/udp.h
 .\objects\main.o: ..\lwip\src\include\lwip/timeouts.h
 .\objects\main.o: ..\lwip\src\include\lwip/sys.h
 .\objects\main.o: ..\lwip\system\arch/sys_arch.h
@@ -98,6 +103,8 @@
 .\objects\main.o: ..\NetDemo\smtp.h
 .\objects\main.o: ..\lwip\src\include\lwip/apps/httpd.h
 .\objects\main.o: ..\lwip\src\include\lwip/apps/httpd_opts.h
+.\objects\main.o: ..\lwip\src\include\lwip/apps/netbiosns.h
+.\objects\main.o: ..\lwip\src\include\lwip/apps/netbiosns_opts.h
 .\objects\main.o: ..\NetDemo\tcpecho.h
 .\objects\main.o: ..\NetDemo\udpecho.h
 .\objects\main.o: ..\NetDemo\ntp_client.h

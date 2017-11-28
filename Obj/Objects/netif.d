@@ -59,3 +59,4 @@
 .\objects\netif.o: ..\FreeRTOS\include\queue.h
 .\objects\netif.o: ..\FreeRTOS\include\semphr.h
 .\objects\netif.o: ..\lwip\src\include\netif/ethernet.h
+.\objects\netif.o: ..\lwip\src\include\lwip/dhcp.h

@@ -50,6 +50,8 @@
 #include "httpserver-netconn.h"
 #include "smtp.h"
 #include "lwip/apps/httpd.h"
+#include "lwip/apps/netbiosns.h"
+
 #include "tcpecho.h"
 #include "udpecho.h"
 #include "ntp_client.h"
@@ -362,9 +364,13 @@ int main(void)
 	httpd_ssi_init();
 	httpd_cgi_init();
 	httpd_init();
+	
 	tcpecho_init();
 	udpecho_init();
-	ntp_client_init();
+	
+	netbiosns_set_name("gxlwip");
+	netbiosns_init();
+//	ntp_client_init();
 // http_server_netconn_init();
 // my_smtp_test();
 	vTaskStartScheduler();
