@@ -905,16 +905,16 @@ ARM Macro Assembler    Page 14
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=.\objects\startup_stm32f429xx.d -o.\objects\startup_stm32f429xx
-.o -ID:\practise\F429Test\HAL_test\Obj\RTE -IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx
-_DFP\2.7.0 -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__MICROLIB SETA 1" --pre
-define="__UVISION_VERSION SETA 514" --predefine="STM32F429xx SETA 1" --list=.\l
+.o -ID:\²Î¿¼\HAL_test\Obj\RTE -IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0 -I
+C:\Keil_v5\ARM\CMSIS\Include --predefine="__MICROLIB SETA 1" --predefine="__UVI
+SION_VERSION SETA 514" --predefine="STM32F429xx SETA 1" --list=.\listings\start
 
 
 
 ARM Macro Assembler    Page 15 
 
 
-istings\startup_stm32f429xx.lst ..\Core\startup_stm32f429xx.s
+up_stm32f429xx.lst ..\Core\startup_stm32f429xx.s
 
 
 

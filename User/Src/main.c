@@ -368,7 +368,7 @@ int main(void)
 	tcpecho_init();
 	udpecho_init();
 	
-	netbiosns_set_name("gxlwip");
+	netbiosns_set_name("gx.lwip");
 	netbiosns_init();
 //	ntp_client_init();
 // http_server_netconn_init();

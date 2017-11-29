@@ -9,7 +9,7 @@
 #include "stm32f4xx_hal.h"
 
 #define NUM_CONFIG_CGI_URIS	3 //CGI的URI数量
-#define NUM_CONFIG_SSI_TAGS	3  //SSI的TAG数量
+#define NUM_CONFIG_SSI_TAGS	4  //SSI的TAG数量
 
 //控制LED和BEEP的CGI handler
 const char* Login_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[]);
@@ -29,7 +29,8 @@ static const char *ppcTAGs[]=  //SSI的Tag
 {
 	"w", //温度值
 	"t",
-	"s"
+	"s",
+	"c"
 };
 
 
@@ -56,7 +57,25 @@ void State_Handler(char *pcInsert)
 	else
 		sprintf(pcInsert,"LED灭");
 }
-
+extern uint32_t IPaddress;
+extern uint32_t Maskaddress;
+extern uint32_t GWaddress;
+void Address_Handler(char *pcInsert)
+{
+			sprintf(pcInsert,"IP_Address:%d.%d.%d.%d\tMask_Address:%d.%d.%d.%d\tGW_Address:%d.%d.%d.%d\r\n",
+			IPaddress&0xff,
+			IPaddress>>8&0xff,
+			IPaddress>>16&0xff,
+			IPaddress>>24,
+			Maskaddress&0xff,
+			Maskaddress>>8&0xff,
+			Maskaddress>>16&0xff,
+			Maskaddress>>24,
+			GWaddress&0xff,
+			GWaddress>>8&0xff,
+			GWaddress>>16&0xff,
+			GWaddress>>24);
+}
 //SSI的Handler句柄
 static u16_t SSIHandler(int iIndex,char *pcInsert,int iInsertLen)
 {
@@ -66,11 +85,14 @@ static u16_t SSIHandler(int iIndex,char *pcInsert,int iInsertLen)
 				Temp_Handler(pcInsert);
 				break;
 		case 1:
-					Tim_Handler(pcInsert);
+				Tim_Handler(pcInsert);
 			break;
 		case 2:
 			State_Handler(pcInsert);
 			break;
+		case 3:
+			Address_Handler(pcInsert);
+		break;
 	}
 	return strlen(pcInsert);
 }
